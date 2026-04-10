@@ -633,24 +633,29 @@ body.au{padding-top:50px}
 </div>
 
 <script>
-// ===== Auto-Save =====
+// ===== Auto-Save (versioned) =====
+const LP_VER='v2.3';
 const SAVE_KEY='lp-autosave';
+const VER_KEY='lp-ver';
 let saveTimer=null;
 function autoSave(){
   clearTimeout(saveTimer);
   saveTimer=setTimeout(()=>{
     const lp=document.getElementById('lp');
-    if(lp)localStorage.setItem(SAVE_KEY,lp.innerHTML);
+    if(lp){localStorage.setItem(SAVE_KEY,lp.innerHTML);localStorage.setItem(VER_KEY,LP_VER)}
     toast('自動保存しました');
   },1000);
 }
 function restoreSaved(){
+  const savedVer=localStorage.getItem(VER_KEY);
+  if(savedVer!==LP_VER){localStorage.removeItem(SAVE_KEY);localStorage.removeItem(VER_KEY);return}
   const saved=localStorage.getItem(SAVE_KEY);
   if(saved){document.getElementById('lp').innerHTML=saved}
 }
 function resetSaved(){
   if(confirm('編集内容をリセットしますか？元のHTMLに戻ります。')){
     localStorage.removeItem(SAVE_KEY);
+    localStorage.removeItem(VER_KEY);
     location.reload();
   }
 }
