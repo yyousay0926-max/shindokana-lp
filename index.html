@@ -157,6 +157,42 @@ p+p{margin-top:18px}
 body.au{padding-top:50px}
 #toast{position:fixed;bottom:24px;right:24px;background:var(--grn);color:#fff;padding:12px 24px;border-radius:8px;font-weight:600;box-shadow:var(--sh2);transform:translateY(80px);opacity:0;transition:all .3s;z-index:1001}
 #toast.show{transform:translateY(0);opacity:1}
+
+/* Highlight markers */
+.hl-y{background:#fef3cd;border-bottom:2px solid #f6c23e;padding:1px 2px;border-radius:2px}
+.hl-g{background:#d4edda;border-bottom:2px solid #28a745;padding:1px 2px;border-radius:2px}
+.hl-r{background:#f8d7da;border-bottom:2px solid #dc3545;padding:1px 2px;border-radius:2px}
+.hl-b{background:#cce5ff;border-bottom:2px solid #007bff;padding:1px 2px;border-radius:2px}
+
+/* Toolbar color buttons */
+#tb .clr{width:22px;height:22px;border-radius:4px;border:2px solid rgba(255,255,255,.4);cursor:pointer;padding:0}
+#tb .clr:hover{border-color:#fff}
+#tb .clr-y{background:#f6c23e}
+#tb .clr-g{background:#28a745}
+#tb .clr-r{background:#dc3545}
+#tb .clr-b{background:#007bff}
+#tb .clr-x{background:transparent;font-size:11px;width:auto;padding:4px 8px;border:1px solid rgba(255,255,255,.4)}
+
+/* Comments */
+.cmt{position:relative;border-bottom:2px dashed #6c63ff;background:rgba(108,99,255,.08);cursor:pointer;padding:1px 2px;border-radius:2px}
+.cmt:hover .cmt-tip{display:block}
+.cmt-tip{display:none;position:absolute;bottom:calc(100% + 6px);left:0;background:#1a2744;color:#fff;padding:8px 12px;border-radius:6px;font-size:13px;line-height:1.5;max-width:300px;white-space:pre-wrap;box-shadow:0 4px 12px rgba(0,0,0,.2);z-index:500;font-style:normal;font-weight:400}
+.cmt-tip::after{content:'';position:absolute;top:100%;left:16px;border:6px solid transparent;border-top-color:#1a2744}
+
+/* Comment dialog */
+#cmt-dialog{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;border-radius:12px;padding:24px;box-shadow:0 8px 40px rgba(0,0,0,.25);z-index:2000;width:360px}
+#cmt-dialog.on{display:block}
+#cmt-dialog h3{font-size:15px;margin-bottom:12px;color:var(--navy)}
+#cmt-dialog textarea{width:100%;height:80px;border:1px solid var(--bdr);border-radius:6px;padding:10px;font-size:14px;font-family:inherit;resize:vertical}
+#cmt-dialog .btns{display:flex;gap:8px;margin-top:12px;justify-content:flex-end}
+#cmt-dialog .btns button{padding:8px 16px;border:none;border-radius:6px;cursor:pointer;font-family:inherit;font-size:13px;font-weight:600}
+#cmt-dialog .btn-ok{background:var(--navy);color:#fff}
+#cmt-dialog .btn-cancel{background:#e2e8f0;color:var(--txt)}
+#cmt-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:1999}
+#cmt-overlay.on{display:block}
+
+/* Image caption */
+.img-cap{font-size:12px;color:var(--txt-l);text-align:center;margin-top:6px;font-style:italic}
 </style>
 </head>
 <body>
@@ -176,6 +212,16 @@ body.au{padding-top:50px}
   <div class="tg"><button onclick="X('bold')"><b>B</b></button><button onclick="X('italic')"><i>I</i></button><button onclick="X('underline')"><u>U</u></button></div>
   <div class="tg"><button onclick="X('formatBlock','h2')">H2</button><button onclick="X('formatBlock','h3')">H3</button><button onclick="X('formatBlock','p')">P</button></div>
   <div class="tg"><button onclick="X('insertUnorderedList')">List</button><button onclick="X('removeFormat')">Clear</button></div>
+  <div class="tg" title="Highlight">
+    <button class="clr clr-y" onclick="hl('hl-y')" title="Yellow"></button>
+    <button class="clr clr-g" onclick="hl('hl-g')" title="Green"></button>
+    <button class="clr clr-r" onclick="hl('hl-r')" title="Red"></button>
+    <button class="clr clr-b" onclick="hl('hl-b')" title="Blue"></button>
+    <button class="clr clr-x" onclick="hlClear()" title="Remove highlight">x</button>
+  </div>
+  <div class="tg">
+    <button onclick="addComment()" title="Add comment" style="font-size:16px">💬</button>
+  </div>
   <div class="tg"><button class="ex" onclick="expH()">Export HTML</button><button class="ex" onclick="expT()" style="margin-left:4px">Export Text</button></div>
 </div>
 
@@ -187,7 +233,7 @@ body.au{padding-top:50px}
     <p class="sub" contenteditable="true">考え方、語り口、価値観。あなたらしさを学習した専用AIが、本人が書いたとしか思えない記事を継続的に生成します。</p>
     <div class="hi">
       <div class="ei" onclick="ri(this)">
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='560' height='320'%3E%3Crect width='560' height='320' rx='12' fill='%23e2e8f0'/%3E%3Ctext x='280' y='155' text-anchor='middle' fill='%23718096' font-family='sans-serif' font-size='16'%3EHero Image%3C/text%3E%3Ctext x='280' y='180' text-anchor='middle' fill='%23a0aec0' font-family='sans-serif' font-size='12'%3EClick to replace%3C/text%3E%3C/svg%3E" alt="Hero">
+        <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=560&h=320&fit=crop&crop=center" alt="Hero - 書斎デスクとノートPC" style="object-fit:cover;height:320px">
       </div>
     </div>
   </div>
@@ -219,7 +265,7 @@ body.au{padding-top:50px}
     <p contenteditable="true">本サービスでは、単に記事を自動生成するのではなく、あなたの話し方、判断の癖、問題意識、温度感まで反映した「専用AI」を一緒につくります。</p>
     <p contenteditable="true">同じテーマでも、書き方はお一人おひとり違います。制度から入る方もいれば、現場で出会った一人の話から入る方もいる。まっすぐ強く言い切る方もいれば、静かに事実を積み上げる方もいる。</p>
     <p contenteditable="true">私たちは、過去の発信や演説、SNS、動画などをもとに、あなたの言葉のクセや重心を丁寧に読み取ります。どこで熱が乗るのか、何を大事にしているのか、逆に何を言うと急に借り物っぽくなるのか。そこまで見たうえで、あなたの延長として機能するAIを設計します。</p>
-    <div class="ia"><div class="ei" onclick="ri(this)"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='780' height='260'%3E%3Crect width='780' height='260' rx='8' fill='%23f7fafc'/%3E%3Ctext x='390' y='125' text-anchor='middle' fill='%23a0aec0' font-family='sans-serif' font-size='15'%3EProcess Diagram%3C/text%3E%3Ctext x='390' y='148' text-anchor='middle' fill='%23cbd5e0' font-family='sans-serif' font-size='11'%3EClick to replace%3C/text%3E%3C/svg%3E" alt="Process"></div></div>
+    <div class="ia"><div class="ei" onclick="ri(this)"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=780&h=260&fit=crop&crop=center" alt="ヒアリング・対話のイメージ" style="object-fit:cover;height:260px"></div><div class="img-cap">推奨: ヒアリング風景 / 2人の対話シーン</div></div>
     <h3 contenteditable="true">つくり方</h3>
     <div class="sps">
       <div class="sp"><div contenteditable="true"><strong>ヒアリング</strong><br>過去の発信・演説・価値観を丁寧にお聞きします。どういう場面で感情が動くか、何に対して強く言い切るか。表記の癖まで把握させてください。</div></div>
@@ -266,7 +312,7 @@ body.au{padding-top:50px}
     <h2 contenteditable="true">同じテーマで比べてください</h2>
     <p contenteditable="true">同じニュースを起点にしたとき、通常のChatGPTと本サービスでどう違うか。並べてご覧ください。</p>
     <h3 contenteditable="true">比較1: 少子化についての冒頭</h3>
-    <p contenteditable="true" style="font-size:13px;color:var(--txt-l);margin-bottom:12px">起点: 厚生労働省「人口動態統計速報」（2025年の出生数が過去最少を更新）</p>
+    <p contenteditable="true" style="font-size:13px;color:var(--txt-l);margin-bottom:12px">起点: 厚生労働省「令和6年 人口動態統計月報年計（概数）」（出生数68.6万人・合計特殊出生率1.15、いずれも過去最低）</p>
     <div class="cg">
       <div class="cb bad">
         <div class="tg2" contenteditable="true">Before: 通常のChatGPT</div>
@@ -275,7 +321,7 @@ body.au{padding-top:50px}
       </div>
       <div class="cb good">
         <div class="tg2" contenteditable="true">After: 本サービス</div>
-        <blockquote contenteditable="true">厚労省が2025年の出生数速報を出した。72万人を割り込んで過去最少。数字としてはもう驚かなくなっている自分がいる。それがまずいと思う。「2人目は気持ちの問題じゃなくて、お金の問題なんです」——地元で何度も聞いてきた声が、また頭をよぎる。政策の議論はいつも制度設計から入るけれど、あの一言にどう答えるか。そこから始めないと届かないんじゃないか。</blockquote>
+        <blockquote contenteditable="true">厚労省が出した令和6年の人口動態統計。出生数68万6千人、合計特殊出生率1.15。どちらも過去最低。数字としてはもう驚かなくなっている自分がいる。それがまずいと思う。「2人目は気持ちの問題じゃなくて、お金の問題なんです」——地元で何度も聞いてきた声が、また頭をよぎる。政策の議論はいつも制度設計から入るけれど、あの一言にどう答えるか。そこから始めないと届かないんじゃないか。</blockquote>
         <div class="nt" contenteditable="true">実在する統計を起点に、本人が過去に聞いた声を引用。数字→感情→問題提起の流れ。</div>
       </div>
     </div>
@@ -308,7 +354,7 @@ body.au{padding-top:50px}
       <li>数字・日付・固有名詞・法律名は裏取り</li>
       <li>思想部分は引用せず、ご本人の価値観で再構成</li>
     </ul>
-    <div class="ia"><div class="ei" onclick="ri(this)"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='780' height='240'%3E%3Crect width='780' height='240' rx='8' fill='%23f7fafc'/%3E%3Ctext x='390' y='115' text-anchor='middle' fill='%23a0aec0' font-family='sans-serif' font-size='15'%3EFact-check Flow%3C/text%3E%3Ctext x='390' y='138' text-anchor='middle' fill='%23cbd5e0' font-family='sans-serif' font-size='11'%3EClick to replace%3C/text%3E%3C/svg%3E" alt="Fact Check"></div></div>
+    <div class="ia"><div class="ei" onclick="ri(this)"><img src="https://images.unsplash.com/photo-1450101499163-c8848e968589?w=780&h=240&fit=crop&crop=center" alt="チェックリスト・確認作業" style="object-fit:cover;height:240px"></div><div class="img-cap">推奨: チェックリスト / 品質確認のイメージ</div></div>
   </div>
 </section>
 
@@ -318,7 +364,7 @@ body.au{padding-top:50px}
     <p contenteditable="true">AIで100点を目指すとどうなるか。毎回、同じような文章しか出なくなります。構文が揃い、語尾が揃い、締め方が揃う。完璧に見えるほど「AIだな」と感じさせてしまう。これはAIの構造的な特性です。</p>
     <p contenteditable="true">だから私たちは、あえて80点の下書きをお届けします。</p>
     <p contenteditable="true">80点で届くから、一言添えるだけで90点になる。「ここを直して」と指示すれば95点にもなる。この余白に意味があります。完璧すぎない下書きだからこそ、最後にあなたの手が入る余地がある。それが「この人は自分で考えて書いている」という印象につながっていきます。</p>
-    <div class="ia"><div class="ei" onclick="ri(this)"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='780' height='220'%3E%3Crect width='780' height='220' rx='8' fill='%23f7fafc'/%3E%3Ctext x='390' y='105' text-anchor='middle' fill='%23a0aec0' font-family='sans-serif' font-size='15'%3E80-point Diagram%3C/text%3E%3Ctext x='390' y='128' text-anchor='middle' fill='%23cbd5e0' font-family='sans-serif' font-size='11'%3EClick to replace%3C/text%3E%3C/svg%3E" alt="80-Point"></div></div>
+    <div class="ia"><div class="ei" onclick="ri(this)"><img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=780&h=220&fit=crop&crop=center" alt="手書きメモ・赤ペンのイメージ" style="object-fit:cover;height:220px"></div><div class="img-cap">推奨: 手書きメモ / 赤ペン添削のイメージ</div></div>
   </div>
 </section>
 
@@ -326,7 +372,7 @@ body.au{padding-top:50px}
   <div class="in">
     <h2 contenteditable="true">文章を積み上げることの価値<br>— AIOという新しい課題</h2>
     <p contenteditable="true">記事を毎日積み上げていくと、いくつかのことが起き始めます。検索されたときに見つかる。初めて名前を知った方が考えを読める。記者やメディアが取材の参考にする。SNSでの発言が切り取られたとき、記事に誘導できる。</p>
-    <p contenteditable="true">そしてもう一つ、今まさに大きく変わりつつあることがあります。ChatGPTやPerplexityに「この候補者はどんな人？」と聞く方が増えています。AIが回答を組み立てるとき参照するのは、まとまった文章です。あなたの考えが蓄積されていなければ、AIはあなたについて正確に答えられません。</p>
+    <p contenteditable="true">そしてもう一つ、今まさに大きく変わりつつあることがあります。ChatGPTなどのAIに「この候補者はどんな人？」と聞く方が増えています。AIが回答を組み立てるとき参照するのは、まとまった文章です。あなたの考えが蓄積されていなければ、AIはあなたについて正確に答えられません。</p>
     <div class="sts">
       <div class="st"><div class="nm" contenteditable="true">8.8億人</div><div class="ds" contenteditable="true">ChatGPT月間利用者</div></div>
       <div class="st"><div class="nm" contenteditable="true">42.9%</div><div class="ds" contenteditable="true">日本の10代のChatGPT利用率<br>(Yahoo検索 31.7%超)</div></div>
@@ -400,6 +446,15 @@ body.au{padding-top:50px}
 
 <input type="file" id="ii" class="hi2" accept="image/*">
 <div id="toast"></div>
+<div id="cmt-overlay" onclick="closeCmt()"></div>
+<div id="cmt-dialog">
+  <h3>コメントを追加</h3>
+  <textarea id="cmt-text" placeholder="コメントを入力..."></textarea>
+  <div class="btns">
+    <button class="btn-cancel" onclick="closeCmt()">キャンセル</button>
+    <button class="btn-ok" onclick="saveCmt()">追加</button>
+  </div>
+</div>
 
 <script>
 const H='7fde4dad022931c85b39ba07f0837fd76f3434f57432b03db026e445ae6e5f6e';
@@ -418,6 +473,18 @@ function expH(){const c=document.documentElement.cloneNode(true);['#tb','#lock',
 function expT(){let t='';document.querySelectorAll('.s').forEach(s=>{t+='===== '+(s.dataset.l||'')+' =====\n\n';s.querySelectorAll('h1,h2,h3,p,li,td,th,blockquote,.nm,.ds,.mo,.tg2,.nt,.n,.p,.t,.am,.dt').forEach(e=>{const x=e.textContent.trim();if(x)t+=x+'\n'});t+='\n\n'});const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'text/plain;charset=utf-8'}));a.download='lp-text.txt';a.click();toast('Text exported')}
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000)}
 document.addEventListener('keydown',e=>{if(e.ctrlKey||e.metaKey){switch(e.key){case'b':e.preventDefault();X('bold');break;case'i':e.preventDefault();X('italic');break;case'u':e.preventDefault();X('underline');break;case's':e.preventDefault();expH();break}}});
+
+// Highlight
+function hl(cls){const sel=window.getSelection();if(!sel.rangeCount||sel.isCollapsed)return;const range=sel.getRangeAt(0);const span=document.createElement('span');span.className=cls;range.surroundContents(span);sel.removeAllRanges();toast('Highlighted')}
+function hlClear(){const sel=window.getSelection();if(!sel.rangeCount)return;const node=sel.anchorNode.parentElement;if(node&&node.className&&node.className.startsWith('hl-')){const parent=node.parentNode;while(node.firstChild)parent.insertBefore(node.firstChild,node);parent.removeChild(node);toast('Highlight removed')}else{X('removeFormat')}}
+
+// Comments
+let cmtRange=null;
+function addComment(){const sel=window.getSelection();if(!sel.rangeCount||sel.isCollapsed){toast('Select text first');return}cmtRange=sel.getRangeAt(0).cloneRange();document.getElementById('cmt-dialog').classList.add('on');document.getElementById('cmt-overlay').classList.add('on');document.getElementById('cmt-text').value='';document.getElementById('cmt-text').focus()}
+function closeCmt(){document.getElementById('cmt-dialog').classList.remove('on');document.getElementById('cmt-overlay').classList.remove('on');cmtRange=null}
+function saveCmt(){const text=document.getElementById('cmt-text').value.trim();if(!text||!cmtRange){closeCmt();return}const sel=window.getSelection();sel.removeAllRanges();sel.addRange(cmtRange);const span=document.createElement('span');span.className='cmt';const tip=document.createElement('span');tip.className='cmt-tip';tip.textContent=text;cmtRange.surroundContents(span);span.appendChild(tip);sel.removeAllRanges();closeCmt();toast('Comment added')}
+// Double-click comment to edit
+document.addEventListener('dblclick',e=>{const cmt=e.target.closest('.cmt');if(!cmt)return;const tip=cmt.querySelector('.cmt-tip');if(!tip)return;const newText=prompt('Edit comment:',tip.textContent);if(newText===null)return;if(newText===''){const parent=cmt.parentNode;tip.remove();while(cmt.firstChild)parent.insertBefore(cmt.firstChild,cmt);parent.removeChild(cmt);toast('Comment removed')}else{tip.textContent=newText;toast('Comment updated')}});
 </script>
 </body>
 </html>
