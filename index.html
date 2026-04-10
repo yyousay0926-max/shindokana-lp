@@ -147,6 +147,14 @@ p+p{margin-top:18px}
 .rc li{list-style:none;padding:8px 0 8px 30px;position:relative;border-bottom:1px solid var(--bdr)}
 .rc li::before{content:attr(data-n);position:absolute;left:0;top:10px;width:20px;height:20px;background:var(--navy);color:#fff;border-radius:50%;font-size:11px;display:flex;align-items:center;justify-content:center;font-weight:700}
 
+/* AI Pattern Cards */
+.ai-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:28px 0}
+@media(max-width:700px){.ai-grid{grid-template-columns:1fr}}
+.ai-card{background:var(--red-bg);border:1px solid rgba(197,48,48,.15);border-radius:var(--r);padding:20px;position:relative}
+.ai-card .ai-tag{display:inline-block;background:var(--red);color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:4px;margin-bottom:10px;letter-spacing:.5px}
+.ai-card blockquote{font-size:14px;line-height:1.8;color:var(--txt);border:none;padding:0;margin:0 0 10px}
+.ai-card .ai-why{font-size:12px;color:var(--red);font-weight:600;border-top:1px solid rgba(197,48,48,.12);padding-top:8px;margin-top:auto}
+
 /* Img area */
 .ia{margin:28px 0}
 
@@ -352,40 +360,59 @@ body.au{padding-top:50px}
 
 <section class="s" data-l="5. Before / After">
   <div class="in">
-    <h2 contenteditable="true">同じテーマ、同じ起点。<br>でも、読んだときの印象がまるで違います。</h2>
-    <p contenteditable="true">以下は、まったく同じニュースを起点にして、通常のChatGPTと本サービスそれぞれに書かせた記事の冒頭です。どちらが「この人が書いた文章だ」と感じるか。並べてご覧ください。</p>
+    <h2 contenteditable="true">AIの文章には、こんな癖があります。</h2>
+    <p contenteditable="true">ChatGPTに「記事を書いて」と頼むと、毎回こういう文章が出てきます。一つひとつは日本語として正しい。でも並べると、全部同じ人が書いたように見える。いえ、人が書いたようにすら見えない。</p>
 
-    <h3 contenteditable="true">比較1: 少子化について — 記事の冒頭200字</h3>
-    <p contenteditable="true" style="font-size:13px;color:var(--txt-l);margin-bottom:12px">起点: 厚生労働省「令和6年 人口動態統計月報年計（概数）」（出生数68.6万人・合計特殊出生率1.15、いずれも過去最低を更新）</p>
+    <div class="ai-grid">
+      <div class="ai-card">
+        <div class="ai-tag" contenteditable="true">パターン1: ポエム導入</div>
+        <blockquote contenteditable="true">朝の澄んだ空気の中、ふと立ち止まって考えました。私たちの暮らす社会は今、静かに、しかし確実に、大きな転換点を迎えようとしています。</blockquote>
+        <div class="ai-why" contenteditable="true">❌ 人間の政治家はこう書かない。朝の空気から少子化には入らない</div>
+      </div>
+      <div class="ai-card">
+        <div class="ai-tag" contenteditable="true">パターン2: 結論ファースト</div>
+        <blockquote contenteditable="true">結論から申し上げますと、少子化は我が国が直面する最も深刻な社会課題の一つです。この問題に対しては、多角的なアプローチが求められています。</blockquote>
+        <div class="ai-why" contenteditable="true">❌ 「結論から申し上げますと」はAIの署名。記事でこう書く人間はいない</div>
+      </div>
+      <div class="ai-card">
+        <div class="ai-tag" contenteditable="true">パターン3: 箇条書き洪水</div>
+        <blockquote contenteditable="true">以下の7つのポイントが重要です。<br>1. 子育て支援の充実<br>2. 働き方改革の推進<br>3. 教育費の負担軽減<br>4. 住居支援の拡充<br>5. 地方自治体の独自施策<br>6. 企業の意識改革<br>7. 社会全体の意識変革</blockquote>
+        <div class="ai-why" contenteditable="true">❌ 7項目を同じ重みで並べる。どれが大事なのかわからない。判断がゼロ</div>
+      </div>
+      <div class="ai-card">
+        <div class="ai-tag" contenteditable="true">パターン4: 四字熟語・抽象語</div>
+        <blockquote contenteditable="true">喫緊の課題に対し、官民一体となった三位一体の取り組みを推進し、持続可能な社会の実現に向けて着実に前進していくことが不可欠です。</blockquote>
+        <div class="ai-why" contenteditable="true">❌ 「喫緊」「三位一体」「持続可能」「着実に前進」—— 中身がない四字熟語の連射</div>
+      </div>
+      <div class="ai-card">
+        <div class="ai-tag" contenteditable="true">パターン5: 語尾マシンガン</div>
+        <blockquote contenteditable="true">少子化は深刻な問題<strong>です</strong>。早急な対策が必要<strong>です</strong>。子育て支援の充実が求められて<strong>います</strong>。社会全体で取り組むことが重要<strong>です</strong>。一人ひとりの意識改革が不可欠<strong>です</strong>。</blockquote>
+        <div class="ai-why" contenteditable="true">❌ 5文連続で「です/ます」。読んでいて息が詰まる。機械が書いた証拠</div>
+      </div>
+      <div class="ai-card">
+        <div class="ai-tag" contenteditable="true">パターン6: ぼかし・逃げ表現</div>
+        <blockquote contenteditable="true">ある専門家は「このままでは社会保障制度の維持が困難になる」と指摘しています。また、報道によると、若年層の経済的不安が増大しているとの声も聞かれます。</blockquote>
+        <div class="ai-why" contenteditable="true">❌ 「ある専門家」「報道によると」「声も聞かれます」—— 誰が言ったのか一切不明</div>
+      </div>
+    </div>
+
+    <p contenteditable="true" style="margin-top:20px">2〜3本読めば、読者は確実に気づきます。「AIで書いてるな」と。これが一番のリスクです。</p>
+
+    <h3 contenteditable="true" style="margin-top:40px">では、本サービスのプロンプトを通すとどう変わるか</h3>
+    <p contenteditable="true" style="font-size:13px;color:var(--txt-l);margin-bottom:12px">起点: 厚生労働省「令和6年 人口動態統計月報年計（概数）」（出生数68.6万人・合計特殊出生率1.15）</p>
     <div class="cg">
       <div class="cb bad">
-        <div class="tg2" contenteditable="true">BEFORE — 通常のChatGPT</div>
-        <blockquote contenteditable="true"><strong>結論から申し上げますと</strong>、少子化は我が国が直面する最も深刻な社会課題の一つ<strong>です</strong>。<br><br>厚生労働省が発表した「令和6年 人口動態統計月報年計（概数）」によると、出生数は約68.6万人、合計特殊出生率は1.15と、いずれも過去最低を記録<strong>しました</strong>。これは<strong>非常に深刻な状況であると言えるでしょう</strong>。<br><br>この問題に対しては、以下のような<strong>多角的なアプローチが求められています</strong>。<br>・子育て支援の充実と経済的負担の軽減<br>・働き方改革の推進とワークライフバランスの実現<br>・教育費の負担軽減に向けた制度設計<br>・若年層への住居支援の拡充<br>・地方自治体における独自施策の展開<br><br>少子化対策は<strong>一朝一夕に</strong>解決できるものではありませんが、国と自治体、そして企業が<strong>三位一体となって</strong>取り組むことで、安心して子どもを産み育てられる社会の実現に向けて、<strong>着実に前進していくことが重要です</strong>。</blockquote>
-        <div class="nt" contenteditable="true"><strong>問題点:</strong><br>❶ 「結論から申し上げますと」—— AI定番の書き出し。人間はこう書かない<br>❷ 語尾が「です→しました→でしょう→います→です」—— 全文「です/ます」系<br>❸ 5項目の箇条書き。どれが重要かわからない。政策メニューのコピペ<br>❹ 「三位一体」「一朝一夕」「多角的なアプローチ」—— AIが好む四字熟語と抽象語<br>❺ この人が少子化についてどう感じているのか、一文字もない</div>
+        <div class="tg2" contenteditable="true">BEFORE — 6つの癖がすべて入った文章</div>
+        <blockquote contenteditable="true"><strong>結論から申し上げますと</strong>、少子化は我が国が直面する<strong>喫緊の課題</strong>です。厚生労働省の発表によると、出生数は約68.6万人で、合計特殊出生率は1.15と過去最低を記録しました。これは<strong>非常に深刻な状況であると言えるでしょう</strong>。<br><br>この問題に対しては、以下のような多角的なアプローチが求められています。<br>・子育て支援の充実と経済的負担の軽減<br>・働き方改革の推進とワークライフバランスの実現<br>・教育費の負担軽減に向けた制度設計<br>・若年層への住居支援の拡充<br>・地方自治体における独自施策の展開<br><br><strong>ある専門家は</strong>「このままでは社会保障制度の持続が困難になる」と<strong>指摘しています</strong>。国と自治体、企業が<strong>三位一体となって</strong>取り組み、安心して子どもを産み育てられる社会の実現に向けて<strong>着実に前進していくことが重要です</strong>。</blockquote>
+        <div class="nt" contenteditable="true"><strong>上の6パターンがすべて入っています:</strong><br>❷結論ファースト / ❹四字熟語「喫緊」「三位一体」 / ❸箇条書き5項目 / ❺語尾「です→ました→でしょう→います→です」 / ❻ぼかし「ある専門家」</div>
       </div>
       <div class="cb good">
         <div class="tg2" contenteditable="true">AFTER — 本サービスのプロンプトを適用</div>
-        <blockquote contenteditable="true">厚労省が出した令和6年の人口動態統計を<strong>開いた</strong>。出生数68万6千人、合計特殊出生率<strong>1.15</strong>。どちらも過去<strong>最低</strong>。<br><br>正直なところ、驚か<strong>なかった</strong>。それがたぶん一番<strong>まずい</strong>。<br><br>「2人目は気持ちじゃなくて、お金の問題なんです」——地元の会合で何度か聞いた言葉が、また頭を<strong>よぎる</strong>。政策の議論はどうしても制度設計から入りがちに<strong>なる</strong>。けれど、あの一言にまず答えるところから始めないと、届くものも届かないんじゃ<strong>ないか</strong>。</blockquote>
-        <div class="nt" contenteditable="true"><strong>何が違うのか:</strong><br>❶ 語尾: 「開いた→最低→まずい→よぎる→なる→ないか」—— すべて異なる。読んでいて息が詰まらない<br>❷ 冒頭が「深刻な課題です」ではなく「統計を開いた」—— 行動と反応から入る<br>❸ 「驚かなかった。それ自体がまずい」—— データに対する本人の感覚が見える<br>❹ 結論を出さず、問いかけで閉じる。読者と一緒に考える構成</div>
+        <blockquote contenteditable="true">厚労省が出した令和6年の人口動態統計を見<strong>ました</strong>。出生数68万6千人、合計特殊出生率は1.15。どちらも過去最低<strong>です</strong>。<br><br>正直に言うと、驚きません<strong>でした</strong>。でも「驚かなくなっている自分」に気づいて、それが一番まずいと<strong>思った</strong>。<br><br>「2人目は気持ちじゃなくて、お金の問題なんです」——地元の会合で何度か聞いてきた言葉<strong>です</strong>。政策の議論はどうしても制度設計から入りがちに<strong>なります</strong>。けれど、あの一言にまず答えるところから始めないと、届くものも届かないんじゃ<strong>ないか</strong>。そう考えて<strong>います</strong>。</blockquote>
+        <div class="nt" contenteditable="true"><strong>6つの癖がすべて消えています:</strong><br>❶ ポエムなし。「統計を見ました」—— 行動と反応から入る<br>❷ 結論を押しつけず、問いかけで閉じる<br>❸ 箇条書きなし。一つの声に絞って深く掘る<br>❹ 四字熟語ゼロ。日常の言葉で書いている<br>❺ です/ます調が基本。でも「思った」「ないか」が自然に混じる——人間の文章はこうなる<br>❻ 「ある専門家」ではなく「地元の会合で聞いてきた言葉」—— 具体的な場面</div>
       </div>
     </div>
-    <div class="rf" contenteditable="true"><strong>ここで効いているルール:</strong> 同一語尾の連続禁止 / 導入は個人の反応から / 感情は具体的状況と結びつける / 事実は公的統計に基づく</div>
-
-    <h3 contenteditable="true">比較2: 防災について — 政策の書き方</h3>
-    <p contenteditable="true" style="font-size:13px;color:var(--txt-l);margin-bottom:12px">テーマ: 自治体の防災体制を強化するには何が必要か</p>
-    <div class="cg">
-      <div class="cb bad">
-        <div class="tg2" contenteditable="true">BEFORE — 通常のChatGPT</div>
-        <blockquote contenteditable="true"><strong>結論から言いますと</strong>、防災対策の強化は<strong>喫緊の課題</strong><strong>です</strong>。<br><br>近年、大規模な自然災害が頻発しており、自治体の防災体制の見直しが<strong>急務となっています</strong>。特に、以下の7つのポイントが重要であると考えられ<strong>ます</strong>。<br><br>1. ハザードマップの更新と住民への周知徹底<br>2. 避難計画の策定と定期的な見直し<br>3. 要配慮者名簿の整備と関係機関との情報共有<br>4. 備蓄物資の確保と適切な分散配置<br>5. 避難所の環境改善（プライバシー確保、トイレ等）<br>6. 情報伝達手段の多重化とデジタル化の推進<br>7. 自主防災組織の育成と地域コミュニティの活性化<br><br><strong>しかしながら</strong>、予算や人員の制約がある中で、すべてを同時に進めることは<strong>容易ではありません</strong>。<strong>だからこそ</strong>、国・自治体・地域住民が一体となり、優先順位を明確にしながら、着実に防災力の向上に取り組んでいくことが<strong>求められているのではないでしょうか</strong>。</blockquote>
-        <div class="nt" contenteditable="true"><strong>問題点:</strong><br>❶ また「結論から言いますと」—— AIの定番書き出し<br>❷ 「喫緊の課題」「急務」「しかしながら」「だからこそ」—— AI特有の接続詞と硬い表現<br>❸ 7項目を番号付きで羅列。優先順位なし。書き手の判断がゼロ<br>❹ 「容易ではありません」「求められているのではないでしょうか」—— 回りくどいAI語<br>❺ 選挙区も現場体験も一切なし。これは政治家の記事ではなく、報告書のダイジェスト</div>
-      </div>
-      <div class="cb good">
-        <div class="tg2" contenteditable="true">AFTER — 本サービスのプロンプトを適用</div>
-        <blockquote contenteditable="true">突き詰めると3つだと<strong>思っている</strong>。<br><br>一つ目は、避難計画の見直し。全国一律のマニュアルでは、沿岸部と山間部の差が見え<strong>なくなる</strong>。うちの選挙区には海抜2メートルの地域がある。「高台へ避難してください」と書かれたチラシが届いても、高台が<strong>ない</strong>。<br><br>二つ目は、要配慮者の把握。災害時に自力で動けない方が地域に何人いるか——担当者ですら正確に答えられないことが<strong>ある</strong>。名簿は存在する。ただ、更新が追いつい<strong>ていない</strong>。<br><br>三つ目は、備蓄の分散。大きな倉庫にまとめると、道路が寸断された瞬間にすべて届か<strong>なくなる</strong>。小学校単位、できれば町会単位まで分ける<strong>べきだ</strong>と考えている。<br><br>この中で最も急ぐのは、二つ目。名前と場所がわからなければ、避難計画も備蓄も<strong>届かない</strong>。</blockquote>
-        <div class="nt" contenteditable="true"><strong>何が違うのか:</strong><br>❶ 7項目→3つ。それぞれに「なぜそう考えるか」がある<br>❷ 「うちの選挙区には海抜2メートルの地域がある」—— 本人の現場感<br>❸ 「高台がない」—— たった一言で、マニュアルの限界を可視化<br>❹ 最後に優先順位を示している＝政治家としての「判断」が見える</div>
-      </div>
-    </div>
-    <div class="rf" contenteditable="true"><strong>ここで効いているルール:</strong> 箇条書きは数を絞り理由を添える / 具体的な場所と数字を使う / 書き手の判断を必ず明示する</div>
+    <div class="rf" contenteditable="true"><strong>ここで効いているルール:</strong> 同一語尾の連続禁止 / 導入は個人の反応から / 感情は具体的状況と結びつける / 事実は公的統計に基づく / 固有名詞をぼかさない</div>
 
     <div class="ia" style="margin-top:36px"><div class="ei" onclick="ri(this)"><img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=780&h=220&fit=crop&crop=center" alt="テキストエディタ・文章比較のイメージ" style="object-fit:cover;height:220px"></div><div class="img-cap">推奨: 文章編集 / 校正作業のイメージ</div></div>
   </div>
