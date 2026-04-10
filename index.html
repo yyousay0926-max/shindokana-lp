@@ -294,6 +294,7 @@ body.au{padding-top:50px}
   <div class="tg">
     <button onclick="addComment()" title="Add comment" style="font-size:16px">💬</button>
   </div>
+  <div class="tg"><button onclick="undo()" title="Undo (Ctrl+Z)" style="font-size:16px">↩</button><button onclick="redo()" title="Redo (Ctrl+Y)" style="font-size:16px">↪</button></div>
   <div class="tg"><button class="ex" onclick="expH()">Export HTML</button><button class="ex" onclick="expT()" style="margin-left:4px">Export Text</button><button class="ex" onclick="resetSaved()" style="margin-left:4px;background:#fc8181;color:#fff">Reset</button></div>
 </div>
 
@@ -676,11 +677,62 @@ function tf(el){el.closest('.fi').classList.toggle('op')}
 function expH(){const c=document.documentElement.cloneNode(true);['#tb','#lock','#ii','#toast','script'].forEach(s=>{c.querySelectorAll(s).forEach(e=>e.remove())});c.querySelectorAll('[contenteditable]').forEach(e=>e.removeAttribute('contenteditable'));c.querySelectorAll('[onclick]').forEach(e=>e.removeAttribute('onclick'));const l=c.querySelector('#lp');if(l){l.style.display='block';l.classList.add('on')}const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['<!DOCTYPE html>\n<html lang="ja">\n'+c.innerHTML+'\n</html>'],{type:'text/html;charset=utf-8'}));a.download='lp-export.html';a.click();toast('HTML exported')}
 function expT(){let t='';document.querySelectorAll('.s').forEach(s=>{t+='===== '+(s.dataset.l||'')+' =====\n\n';s.querySelectorAll('h1,h2,h3,p,li,td,th,blockquote,.nm,.ds,.mo,.tg2,.nt,.n,.p,.t,.am,.dt').forEach(e=>{const x=e.textContent.trim();if(x)t+=x+'\n'});t+='\n\n'});const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'text/plain;charset=utf-8'}));a.download='lp-text.txt';a.click();toast('Text exported')}
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000)}
-document.addEventListener('keydown',e=>{if(e.ctrlKey||e.metaKey){switch(e.key){case'b':e.preventDefault();X('bold');break;case'i':e.preventDefault();X('italic');break;case'u':e.preventDefault();X('underline');break;case's':e.preventDefault();expH();break}}});
+document.addEventListener('keydown',e=>{if(e.ctrlKey||e.metaKey){switch(e.key){case'z':e.preventDefault();if(e.shiftKey){redo()}else{undo()}break;case'y':e.preventDefault();redo();break;case'b':e.preventDefault();X('bold');break;case'i':e.preventDefault();X('italic');break;case'u':e.preventDefault();X('underline');break;case's':e.preventDefault();expH();break}}});
 
-// Auto-save: MutationObserver catches all DOM changes (text, formatting, images)
-const _lpObs=new MutationObserver(autoSave);
+// ===== Undo/Redo =====
+const UNDO_MAX=50;
+let undoStack=[];
+let redoStack=[];
+let _undoTimer=null;
+let _undoApplying=false;
+
+function pushUndo(){
+  if(_undoApplying)return;
+  clearTimeout(_undoTimer);
+  _undoTimer=setTimeout(()=>{
+    const lp=document.getElementById('lp');
+    if(!lp)return;
+    const html=lp.innerHTML;
+    if(undoStack.length>0&&undoStack[undoStack.length-1]===html)return;
+    undoStack.push(html);
+    if(undoStack.length>UNDO_MAX)undoStack.shift();
+    redoStack=[];
+  },500);
+}
+
+function undo(){
+  const lp=document.getElementById('lp');
+  if(!lp||undoStack.length<2)return;
+  _undoApplying=true;
+  _lpObs.disconnect();
+  redoStack.push(undoStack.pop());
+  lp.innerHTML=undoStack[undoStack.length-1];
+  autoSave();
+  _lpObs.observe(lp,{childList:true,subtree:true,characterData:true,attributes:true});
+  _undoApplying=false;
+  toast('元に戻しました');
+}
+
+function redo(){
+  const lp=document.getElementById('lp');
+  if(!lp||redoStack.length===0)return;
+  _undoApplying=true;
+  _lpObs.disconnect();
+  const state=redoStack.pop();
+  undoStack.push(state);
+  lp.innerHTML=state;
+  autoSave();
+  _lpObs.observe(lp,{childList:true,subtree:true,characterData:true,attributes:true});
+  _undoApplying=false;
+  toast('やり直しました');
+}
+
+// Auto-save + Undo history: MutationObserver catches all DOM changes
+const _lpObs=new MutationObserver(()=>{autoSave();pushUndo()});
 _lpObs.observe(document.getElementById('lp'),{childList:true,subtree:true,characterData:true,attributes:true});
+
+// Capture initial state for undo
+(function(){const lp=document.getElementById('lp');if(lp)undoStack.push(lp.innerHTML)})();
 
 // ===== Selection Preservation =====
 let savedSel=null;
