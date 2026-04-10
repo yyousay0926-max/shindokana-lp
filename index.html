@@ -273,7 +273,7 @@ body.au{padding-top:50px}
   <div class="tg">
     <button onclick="addComment()" title="Add comment" style="font-size:16px">💬</button>
   </div>
-  <div class="tg"><button class="ex" onclick="expH()">Export HTML</button><button class="ex" onclick="expT()" style="margin-left:4px">Export Text</button></div>
+  <div class="tg"><button class="ex" onclick="expH()">Export HTML</button><button class="ex" onclick="expT()" style="margin-left:4px">Export Text</button><button class="ex" onclick="resetSaved()" style="margin-left:4px;background:#fc8181;color:#fff">Reset</button></div>
 </div>
 
 <div id="lp">
@@ -331,7 +331,7 @@ body.au{padding-top:50px}
 <section class="s" data-l="4. AI Smell Elimination">
   <div class="in">
     <h2 contenteditable="true">なぜ「本人の文章」に見えるのか<br>— プロンプト設計の中身</h2>
-    <p contenteditable="true">通常のAIには独特の癖があります。私たちのプロンプトは、それを一つずつ構造的に排除しています。</p>
+    <p contenteditable="true">通常のAIには独特の癖があります。プロンプト設計の一端をお見せすると、以下のような対策を行っています。</p>
     <table class="tbl">
       <thead><tr><th contenteditable="true">通常のAIが出す癖</th><th contenteditable="true">本サービスの排除方法</th></tr></thead>
       <tbody>
@@ -360,43 +360,43 @@ body.au{padding-top:50px}
 
 <section class="s" data-l="5. Before / After">
   <div class="in">
-    <h2 contenteditable="true">AIの文章には、こんな癖があります。</h2>
-    <p contenteditable="true">ChatGPTに「記事を書いて」と頼むと、毎回こういう文章が出てきます。一つひとつは日本語として正しい。でも並べると、全部同じ人が書いたように見える。いえ、人が書いたようにすら見えない。</p>
+    <h2 contenteditable="true">実際のテスト運用で見つかった<br>AIの癖、6パターン。</h2>
+    <p contenteditable="true">60件以上のフィードバック・修正コメントを分析した結果、AIが繰り返し指摘される癖は6つに集約されました。以下は、実際の運用テストで記録された修正事例です。</p>
 
     <div class="ai-grid">
       <div class="ai-card">
-        <div class="ai-tag" contenteditable="true">パターン1: ポエム導入</div>
-        <blockquote contenteditable="true">朝の澄んだ空気の中、ふと立ち止まって考えました。私たちの暮らす社会は今、静かに、しかし確実に、大きな転換点を迎えようとしています。</blockquote>
-        <div class="ai-why" contenteditable="true">❌ 人間の政治家はこう書かない。朝の空気から少子化には入らない</div>
+        <div class="ai-tag" contenteditable="true">パターン1: 固有名詞を出さない（10件）</div>
+        <blockquote contenteditable="true">〜比例単独での立候補を表明した<strong>議員</strong>の動きも注目されています。また、<strong>報道では</strong>現場の温度差が〜</blockquote>
+        <div class="ai-why" contenteditable="true">❌ 「その人の名前を出さないのはおかしい」「報道では、だと具体的な記事名がない」</div>
       </div>
       <div class="ai-card">
-        <div class="ai-tag" contenteditable="true">パターン2: 結論ファースト</div>
-        <blockquote contenteditable="true">結論から申し上げますと、少子化は我が国が直面する最も深刻な社会課題の一つです。この問題に対しては、多角的なアプローチが求められています。</blockquote>
-        <div class="ai-why" contenteditable="true">❌ 「結論から申し上げますと」はAIの署名。記事でこう書く人間はいない</div>
+        <div class="ai-tag" contenteditable="true">パターン2: 定番フレーズの繰り返し（6件）</div>
+        <blockquote contenteditable="true">私が引き続き重視したいのは、<strong>次のような点です。</strong><br>私は、<strong>歴史の連続性を大切にしたいと思っています。</strong></blockquote>
+        <div class="ai-why" contenteditable="true">❌ 「AIくさい文章」と即座に判定。毎回同じ言い回しが繰り返される</div>
       </div>
       <div class="ai-card">
-        <div class="ai-tag" contenteditable="true">パターン3: 箇条書き洪水</div>
-        <blockquote contenteditable="true">以下の7つのポイントが重要です。<br>1. 子育て支援の充実<br>2. 働き方改革の推進<br>3. 教育費の負担軽減<br>4. 住居支援の拡充<br>5. 地方自治体の独自施策<br>6. 企業の意識改革<br>7. 社会全体の意識変革</blockquote>
-        <div class="ai-why" contenteditable="true">❌ 7項目を同じ重みで並べる。どれが大事なのかわからない。判断がゼロ</div>
+        <div class="ai-tag" contenteditable="true">パターン3: 論理の飛躍（9件）</div>
+        <blockquote contenteditable="true"><strong>ここまで見てきて</strong>、私の結論は〜<br><br>提案は、<strong>大げさな憲法論ではありません。</strong></blockquote>
+        <div class="ai-why" contenteditable="true">❌ 「何をここまで見てきたの？意味不明」「この話題で憲法論は違和感」— 途中の論理を飛ばす</div>
       </div>
       <div class="ai-card">
-        <div class="ai-tag" contenteditable="true">パターン4: 四字熟語・抽象語</div>
-        <blockquote contenteditable="true">喫緊の課題に対し、官民一体となった三位一体の取り組みを推進し、持続可能な社会の実現に向けて着実に前進していくことが不可欠です。</blockquote>
-        <div class="ai-why" contenteditable="true">❌ 「喫緊」「三位一体」「持続可能」「着実に前進」—— 中身がない四字熟語の連射</div>
+        <div class="ai-tag" contenteditable="true">パターン4: ふんわり・踏み込み不足（4件）</div>
+        <blockquote contenteditable="true">○○区は多様な世代・国籍・働き方を抱える街ですが、だからこそ<strong>「共に助け合う力」を育てる土壌があります。</strong></blockquote>
+        <div class="ai-why" contenteditable="true">❌ 「私なら言わないふんわり表現」— 具体性がなく、何も言っていない</div>
       </div>
       <div class="ai-card">
-        <div class="ai-tag" contenteditable="true">パターン5: 語尾マシンガン</div>
+        <div class="ai-tag" contenteditable="true">パターン5: 語尾の連続</div>
         <blockquote contenteditable="true">少子化は深刻な問題<strong>です</strong>。早急な対策が必要<strong>です</strong>。子育て支援の充実が求められて<strong>います</strong>。社会全体で取り組むことが重要<strong>です</strong>。一人ひとりの意識改革が不可欠<strong>です</strong>。</blockquote>
-        <div class="ai-why" contenteditable="true">❌ 5文連続で「です/ます」。読んでいて息が詰まる。機械が書いた証拠</div>
+        <div class="ai-why" contenteditable="true">❌ 「語尾が連続。ですって」— 人間は自然に語尾を変えるが、AIは変えない</div>
       </div>
       <div class="ai-card">
-        <div class="ai-tag" contenteditable="true">パターン6: ぼかし・逃げ表現</div>
-        <blockquote contenteditable="true">ある専門家は「このままでは社会保障制度の維持が困難になる」と指摘しています。また、報道によると、若年層の経済的不安が増大しているとの声も聞かれます。</blockquote>
-        <div class="ai-why" contenteditable="true">❌ 「ある専門家」「報道によると」「声も聞かれます」—— 誰が言ったのか一切不明</div>
+        <div class="ai-tag" contenteditable="true">パターン6: 整理されすぎ・感情がない（4件）</div>
+        <blockquote contenteditable="true">私の感覚で、優先度が高いものを挙げます。<br>・物価高と実質賃金の上昇<br>・社会保障の持続性<br>・子育て・教育費の構造問題<br>・防災・インフラ老朽化<br>・安全保障環境の変化</blockquote>
+        <div class="ai-why" contenteditable="true">❌ 「前半はAI臭い。整理されてる感が」「感情。人の心の動きに寄り添ってない」</div>
       </div>
     </div>
 
-    <p contenteditable="true" style="margin-top:20px">2〜3本読めば、読者は確実に気づきます。「AIで書いてるな」と。これが一番のリスクです。</p>
+    <p contenteditable="true" style="margin-top:20px">これらは実際の運用テストで60件以上のフィードバックを分析して抽出されたパターンです。2〜3本並べれば、読者は確実に気づきます。</p>
 
     <h3 contenteditable="true" style="margin-top:40px">では、本サービスのプロンプトを通すとどう変わるか</h3>
     <p contenteditable="true" style="font-size:13px;color:var(--txt-l);margin-bottom:12px">起点: 厚生労働省「令和6年 人口動態統計月報年計（概数）」（出生数68.6万人・合計特殊出生率1.15）</p>
@@ -404,15 +404,28 @@ body.au{padding-top:50px}
       <div class="cb bad">
         <div class="tg2" contenteditable="true">BEFORE — 6つの癖がすべて入った文章</div>
         <blockquote contenteditable="true"><strong>結論から申し上げますと</strong>、少子化は我が国が直面する<strong>喫緊の課題</strong>です。厚生労働省の発表によると、出生数は約68.6万人で、合計特殊出生率は1.15と過去最低を記録しました。これは<strong>非常に深刻な状況であると言えるでしょう</strong>。<br><br>この問題に対しては、以下のような多角的なアプローチが求められています。<br>・子育て支援の充実と経済的負担の軽減<br>・働き方改革の推進とワークライフバランスの実現<br>・教育費の負担軽減に向けた制度設計<br>・若年層への住居支援の拡充<br>・地方自治体における独自施策の展開<br><br><strong>ある専門家は</strong>「このままでは社会保障制度の持続が困難になる」と<strong>指摘しています</strong>。国と自治体、企業が<strong>三位一体となって</strong>取り組み、安心して子どもを産み育てられる社会の実現に向けて<strong>着実に前進していくことが重要です</strong>。</blockquote>
-        <div class="nt" contenteditable="true"><strong>上の6パターンがすべて入っています:</strong><br>❷結論ファースト / ❹四字熟語「喫緊」「三位一体」 / ❸箇条書き5項目 / ❺語尾「です→ました→でしょう→います→です」 / ❻ぼかし「ある専門家」</div>
+        <div class="nt" contenteditable="true"><strong>テスト運用で繰り返し指摘された癖が入っています:</strong><br>❶定番導入「結論から申し上げますと」 / ❷堅い定型表現の多用 / ❸5項目の箇条書き（どれが大事かの判断がない） / ❹語尾の連続 / ❺ぼかし「ある専門家は」</div>
       </div>
       <div class="cb good">
         <div class="tg2" contenteditable="true">AFTER — 本サービスのプロンプトを適用</div>
         <blockquote contenteditable="true">厚労省が出した令和6年の人口動態統計を見<strong>ました</strong>。出生数68万6千人、合計特殊出生率は1.15。どちらも過去最低<strong>です</strong>。<br><br>正直、またかという気持ちは<strong>あります</strong>。<br><br>「2人目は気持ちじゃなくて、お金の問題なんです」——地元の会合で何度か聞いてきた言葉<strong>です</strong>。政策の議論はどうしても制度設計から入りがちに<strong>なります</strong>。けれど、あの一言にまず答えるところから始めないと、届くものも届かないんじゃ<strong>ないか</strong>。そう考えて<strong>います</strong>。</blockquote>
-        <div class="nt" contenteditable="true"><strong>6つの癖がすべて消えています:</strong><br>❶ ポエムなし。「統計を見ました」—— 行動と反応から入る<br>❷ 結論を押しつけず、問いかけで閉じる<br>❸ 箇条書きなし。一つの声に絞って深く掘る<br>❹ 四字熟語ゼロ。日常の言葉で書いている<br>❺ です/ます調が基本。でも「思った」「ないか」が自然に混じる——人間の文章はこうなる<br>❻ 「ある専門家」ではなく「地元の会合で聞いてきた言葉」—— 具体的な場面</div>
+        <div class="nt" contenteditable="true"><strong>指摘された癖がすべて消えています:</strong><br>❶ 定番フレーズなし。「統計を見ました」—— 行動から入る<br>❷ 問いかけで閉じる。結論の押しつけがない<br>❸ 5項目の羅列ではなく、一つの声から掘り下げる<br>❹ 語尾に変化がある。です/ます基調だが「ないか」「います」が自然に混じる<br>❺ 「ある専門家」ではなく「地元の会合で聞いてきた言葉」—— 出典が具体的</div>
       </div>
     </div>
-    <div class="rf" contenteditable="true"><strong>ここで効いているルール:</strong> 同一語尾の連続禁止 / 導入は個人の反応から / 感情は具体的状況と結びつける / 事実は公的統計に基づく / 固有名詞をぼかさない</div>
+    <h3 contenteditable="true" style="margin-top:28px">本人修正の実例 — ここが「キャラクター再現」の中身</h3>
+    <div class="cg">
+      <div class="cb bad">
+        <div class="tg2" contenteditable="true">AIの出力</div>
+        <blockquote contenteditable="true">○○区は多様な世代・国籍・働き方を抱える街ですが、だからこそ「共に助け合う力」を育てる土壌があります。</blockquote>
+        <div class="nt" contenteditable="true">本人の指摘：「私なら言わないふんわり表現」</div>
+      </div>
+      <div class="cb good">
+        <div class="tg2" contenteditable="true">本人が手を入れた後</div>
+        <blockquote contenteditable="true">○○区は多様な世代・国籍・働き方をする方がいる可用性に富んだ街。<strong>常識や言葉も通じない相手がいるからこそ</strong>、ともに助け合う力を育てる土壌があります。</blockquote>
+        <div class="nt" contenteditable="true">✓ AIの「ふんわり」を、本人なら踏み込むところまで踏み込んだ表現に。この差が「キャラクター再現」の中身です。</div>
+      </div>
+    </div>
+    <div class="rf" contenteditable="true"><strong>これはプロンプト設計のごく一部です。</strong> 実際のプロンプトには、文体制御・禁止表現リスト・12項目QCチェック・モデル別調整・フィードバック学習ループなど、多層的なルールが組み込まれています。ここでお見せしているのは、その一端にすぎません。</div>
 
     <div class="ia" style="margin-top:36px"><div class="ei" onclick="ri(this)"><img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=780&h=220&fit=crop&crop=center" alt="テキストエディタ・文章比較のイメージ" style="object-fit:cover;height:220px"></div><div class="img-cap">推奨: 文章編集 / 校正作業のイメージ</div></div>
   </div>
@@ -439,6 +452,7 @@ body.au{padding-top:50px}
     <p contenteditable="true">AIで100点を目指すとどうなるか。毎回、同じような文章しか出なくなります。構文が揃い、語尾が揃い、締め方が揃う。完璧に見えるほど「AIだな」と感じさせてしまう。これはAIの構造的な特性です。</p>
     <p contenteditable="true">だから私たちは、あえて80点の下書きをお届けします。</p>
     <p contenteditable="true">80点で届くから、一言添えるだけで90点になる。「ここを直して」と指示すれば95点にもなる。この余白に意味があります。完璧すぎない下書きだからこそ、最後にあなたの手が入る余地がある。それが「この人は自分で考えて書いている」という印象につながっていきます。</p>
+    <p contenteditable="true">もう一つ、現実的な理由もあります。100点を目指せば1本あたりの手間とコストが跳ね上がり、毎日投稿のペースを維持できなくなります。80点を安定して出せる仕組みの方が実用的です。完璧な1本より、あなたらしい30本。信頼の蓄積は、量が生みます。</p>
     <div class="ia"><div class="ei" onclick="ri(this)"><img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=780&h=220&fit=crop&crop=center" alt="手書きメモ・赤ペンのイメージ" style="object-fit:cover;height:220px"></div><div class="img-cap">推奨: 手書きメモ / 赤ペン添削のイメージ</div></div>
   </div>
 </section>
@@ -529,10 +543,10 @@ body.au{padding-top:50px}
 
 <section class="s" data-l="11. Summary">
   <div class="in">
-    <h2 contenteditable="true">効率化ではなく、<br>伝わり方の改善です。</h2>
-    <p contenteditable="true">AIを使えば早く作れる。量産もできる。でも政治の発信は、効率化だけで終わると危険です。速く出せても薄くなったら意味がない。整っていても、ご本人が消えてしまったら逆効果です。</p>
-    <p contenteditable="true">だからこそ、AIは表に出しません。前に出るのは、あくまであなた自身です。AIは黒子として、あなたの輪郭をもっと濃くするために使う。</p>
-    <p contenteditable="true">積み上げてきた活動と実感を、きちんと伝わる形に変えたい。しかも、あなたらしさを失わずに。そこまでやって初めて意味があるサービスだと考えています。</p>
+    <h2 contenteditable="true">文章でしか届かない人に、<br>あなたの考えを届けるために。</h2>
+    <p contenteditable="true">演説や対面で会える人には限りがあります。あなたのことを知りたいと思ったとき、多くの人はまず検索します。そしてこれからは、AIに聞くようになります。</p>
+    <p contenteditable="true">そのとき、AIがあなたについて何を語るか。材料を用意しているかどうかが、信頼の分かれ目になります。自分の言葉で書かれた記事が積み上がっていれば、AIはそれを参照します。なければ、他人が書いた記事だけで語られます。</p>
+    <p contenteditable="true">発信を続ける。しかも、あなたらしい言葉で。文章でしかアプローチできない相手に、あなたの考えを届け、信頼を積み上げていく。それが、このサービスの存在意義です。</p>
   </div>
 </section>
 
@@ -559,16 +573,38 @@ body.au{padding-top:50px}
 </div>
 
 <script>
+// ===== Auto-Save =====
+const SAVE_KEY='lp-autosave';
+let saveTimer=null;
+function autoSave(){
+  clearTimeout(saveTimer);
+  saveTimer=setTimeout(()=>{
+    const lp=document.getElementById('lp');
+    if(lp)localStorage.setItem(SAVE_KEY,lp.innerHTML);
+    toast('自動保存しました');
+  },1000);
+}
+function restoreSaved(){
+  const saved=localStorage.getItem(SAVE_KEY);
+  if(saved){document.getElementById('lp').innerHTML=saved}
+}
+function resetSaved(){
+  if(confirm('編集内容をリセットしますか？元のHTMLに戻ります。')){
+    localStorage.removeItem(SAVE_KEY);
+    location.reload();
+  }
+}
+
 const H='7fde4dad022931c85b39ba07f0837fd76f3434f57432b03db026e445ae6e5f6e';
 async function s256(s){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(b=>b.toString(16).padStart(2,'0')).join('')}
-async function auth(){const h=await s256(document.getElementById('pw').value);if(h===H){document.getElementById('lock').classList.add('off');document.getElementById('lp').classList.add('on');document.getElementById('tb').style.display='flex';document.body.classList.add('au');sessionStorage.setItem('a','1')}else{document.getElementById('err').textContent='Incorrect passcode';document.getElementById('pw').value='';document.getElementById('pw').focus()}}
+async function auth(){const h=await s256(document.getElementById('pw').value);if(h===H){document.getElementById('lock').classList.add('off');document.getElementById('lp').classList.add('on');document.getElementById('tb').style.display='flex';document.body.classList.add('au');sessionStorage.setItem('a','1');restoreSaved()}else{document.getElementById('err').textContent='Incorrect passcode';document.getElementById('pw').value='';document.getElementById('pw').focus()}}
 document.getElementById('pw').addEventListener('keydown',e=>{if(e.key==='Enter')auth()});
-if(sessionStorage.getItem('a')==='1'){document.getElementById('lock').classList.add('off');document.getElementById('lp').classList.add('on');document.getElementById('tb').style.display='flex';document.body.classList.add('au')}
+if(sessionStorage.getItem('a')==='1'){document.getElementById('lock').classList.add('off');document.getElementById('lp').classList.add('on');document.getElementById('tb').style.display='flex';document.body.classList.add('au');restoreSaved()}
 
 function X(c,v){c==='formatBlock'?document.execCommand('formatBlock',false,'<'+v+'>'):document.execCommand(c,false,v||null)}
 let ci=null;const ii=document.getElementById('ii');
 function ri(c){ci=c;ii.click()}
-ii.addEventListener('change',e=>{const f=e.target.files[0];if(!f||!ci)return;const r=new FileReader();r.onload=ev=>{ci.querySelector('img').src=ev.target.result};r.readAsDataURL(f);ii.value=''});
+ii.addEventListener('change',e=>{const f=e.target.files[0];if(!f||!ci)return;const r=new FileReader();r.onload=ev=>{ci.querySelector('img').src=ev.target.result;autoSave()};r.readAsDataURL(f);ii.value=''});
 function tf(el){el.closest('.fi').classList.toggle('op')}
 
 function expH(){const c=document.documentElement.cloneNode(true);['#tb','#lock','#ii','#toast','script'].forEach(s=>{c.querySelectorAll(s).forEach(e=>e.remove())});c.querySelectorAll('[contenteditable]').forEach(e=>e.removeAttribute('contenteditable'));c.querySelectorAll('[onclick]').forEach(e=>e.removeAttribute('onclick'));const l=c.querySelector('#lp');if(l){l.style.display='block';l.classList.add('on')}const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['<!DOCTYPE html>\n<html lang="ja">\n'+c.innerHTML+'\n</html>'],{type:'text/html;charset=utf-8'}));a.download='lp-export.html';a.click();toast('HTML exported')}
@@ -576,10 +612,15 @@ function expT(){let t='';document.querySelectorAll('.s').forEach(s=>{t+='===== '
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000)}
 document.addEventListener('keydown',e=>{if(e.ctrlKey||e.metaKey){switch(e.key){case'b':e.preventDefault();X('bold');break;case'i':e.preventDefault();X('italic');break;case'u':e.preventDefault();X('underline');break;case's':e.preventDefault();expH();break}}});
 
+// Auto-save: MutationObserver catches all DOM changes (text, formatting, images)
+const _lpObs=new MutationObserver(autoSave);
+_lpObs.observe(document.getElementById('lp'),{childList:true,subtree:true,characterData:true,attributes:true});
+
 // ===== Selection Preservation =====
 let savedSel=null;
-function saveSel(){const s=window.getSelection();if(s.rangeCount>0)savedSel=s.getRangeAt(0).cloneRange()}
+function saveSel(){const s=window.getSelection();if(s.rangeCount>0&&!s.isCollapsed)savedSel=s.getRangeAt(0).cloneRange()}
 function restoreSel(){if(!savedSel)return;const s=window.getSelection();s.removeAllRanges();s.addRange(savedSel)}
+document.addEventListener('selectionchange',function(){const s=window.getSelection();if(!s||s.rangeCount===0||s.isCollapsed)return;const n=s.anchorNode;if(!n)return;const el=n.nodeType===3?n.parentElement:n;if(el&&el.closest&&el.closest('[contenteditable="true"]'))savedSel=s.getRangeAt(0).cloneRange()});
 
 // ===== Google Docs-style Color Palette =====
 const CP_COLORS=[
@@ -627,6 +668,8 @@ function buildPalette(popId,type){
 
 function applyColor(type,c){
   restoreSel();
+  const sel=window.getSelection();
+  if(!sel||sel.rangeCount===0||sel.isCollapsed){toast('テキストを選択してください');return}
   if(type==='fc'){
     document.execCommand('foreColor',false,c);
     document.getElementById('fc-bar').style.background=c;
