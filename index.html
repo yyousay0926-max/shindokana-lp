@@ -386,15 +386,15 @@ body.au{padding-top:50px}
 
 <section class="s" data-l="4.5 AI Quiz" style="background:var(--bg2)" id="sec-quiz">
   <div class="in">
-    <h2>どちらがAIの文章か、<br>見分けられますか？</h2>
-    <p style="margin-bottom:8px;color:var(--txt-l)">実際の出力から抜粋した2つの文章を読み比べて、「AIが書いた方」を選んでください。</p>
+    <h2>どちらも、AIが書いた文章です。</h2>
+    <p style="margin-bottom:8px;color:var(--txt-l)">片方は素のChatGPT、もう片方は本サービスのプロンプトを通したAI。<br>「通常のAIが書いた方」を選んでください。</p>
     <div id="quiz">
       <div class="quiz-q active" data-answer="a">
-        <div class="quiz-num">Q1 / 3　—　冒頭の書き出し</div>
+        <div class="quiz-num">Q1 / 6　—　固有名詞をぼかす</div>
         <div class="quiz-pair">
           <div class="quiz-opt" data-choice="a" onclick="quizPick(this)">
             <div class="quiz-label">A</div>
-            <p>○○区議会議員の△△です。今日は、いわゆる「カタログギフト配布」をめぐる報道の"騒ぎ方"そのものについて、率直に書きます。結論から言います。こんなことで騒ぐメディア、もっと大事なこと報道してくれよ！ ——これが、私の主張の芯です。</p>
+            <p>比例単独での立候補を表明した議員の動きも注目されています。また、報道では現場の温度差が指摘されており、今後の展開を注視する必要があります。こうした政治的な動きについて、私たちは冷静に見ていくことが大切です。</p>
           </div>
           <div class="quiz-opt" data-choice="b" onclick="quizPick(this)">
             <div class="quiz-label">B</div>
@@ -404,7 +404,7 @@ body.au{padding-top:50px}
         <div class="quiz-fb"></div>
       </div>
       <div class="quiz-q active" data-answer="b">
-        <div class="quiz-num">Q2 / 3　—　政策の提案</div>
+        <div class="quiz-num">Q2 / 6　—　定番フレーズの繰り返し</div>
         <div class="quiz-pair">
           <div class="quiz-opt" data-choice="a" onclick="quizPick(this)">
             <div class="quiz-label">A</div>
@@ -412,21 +412,63 @@ body.au{padding-top:50px}
           </div>
           <div class="quiz-opt" data-choice="b" onclick="quizPick(this)">
             <div class="quiz-label">B</div>
-            <p>私の感覚で、優先度が高いものを挙げます。物価高と実質賃金。社会保障の持続性。子育て・教育費と少子化。防災・インフラ老朽化。安全保障環境の変化。行政の無駄と利権構造。外国資本の不透明な流入。</p>
+            <p>私が引き続き重視したいのは、次のような点です。政治資金の透明性を高めることが重要です。私は、歴史の連続性を大切にしたいと思っています。これからも、皆様のご理解を賜りながら、一歩一歩前進してまいりたいと考えています。</p>
           </div>
         </div>
         <div class="quiz-fb"></div>
       </div>
       <div class="quiz-q active" data-answer="a">
-        <div class="quiz-num">Q3 / 3　—　地域課題への所見</div>
+        <div class="quiz-num">Q3 / 6　—　論理の飛躍</div>
         <div class="quiz-pair">
           <div class="quiz-opt" data-choice="a" onclick="quizPick(this)">
             <div class="quiz-label">A</div>
-            <p>私たちの地域には、高齢化や空き家問題をはじめとする様々な課題があります。しかしながら、地域の皆様と力を合わせることで、必ずやこれらの課題を乗り越えていけるものと確信しております。今後とも、住民の皆様の声に耳を傾けてまいります。</p>
+            <p>ここまで見てきて、私の結論はこうです。この問題は大げさな憲法論ではありません。必要なのは、現場の声に寄り添い、地域に根ざした政策を推進していくことです。私たちは、この課題にしっかりと向き合っていかなければなりません。</p>
           </div>
           <div class="quiz-opt" data-choice="b" onclick="quizPick(this)">
             <div class="quiz-label">B</div>
             <p>港区で空き家の相談を受けるたび、条例だけでは動かせない壁の厚さを思います。所有者の事情、相続、管理不全。目の前の危険に早く対応したくても、自治体にできることは驚くほど限られているのが実情です。</p>
+          </div>
+        </div>
+        <div class="quiz-fb"></div>
+      </div>
+      <div class="quiz-q active" data-answer="b">
+        <div class="quiz-num">Q4 / 6　—　ふんわり・踏み込み不足</div>
+        <div class="quiz-pair">
+          <div class="quiz-opt" data-choice="a" onclick="quizPick(this)">
+            <div class="quiz-label">A</div>
+            <p>少子化対策というと、つい大きな制度論になりやすい。けれど、暮らしの不安がそのまま残っているなら、どんな立派な言葉も届かない。まず手をつけるべきは、毎月の見通しを支える仕組みだと思っています。</p>
+          </div>
+          <div class="quiz-opt" data-choice="b" onclick="quizPick(this)">
+            <div class="quiz-label">B</div>
+            <p>港区は多様な世代・国籍・働き方を抱える街ですが、だからこそ「共に助け合う力」を育てる土壌があります。私たちの地域が持つ可能性を信じ、一人ひとりが安心して暮らせるまちづくりに取り組んでまいります。</p>
+          </div>
+        </div>
+        <div class="quiz-fb"></div>
+      </div>
+      <div class="quiz-q active" data-answer="a">
+        <div class="quiz-num">Q5 / 6　—　語尾の連続</div>
+        <div class="quiz-pair">
+          <div class="quiz-opt" data-choice="a" onclick="quizPick(this)">
+            <div class="quiz-label">A</div>
+            <p>少子化は深刻な問題です。早急な対策が必要です。子育て支援の充実が求められています。社会全体で取り組むことが重要です。一人ひとりの意識改革が不可欠です。今こそ行動を起こすべきときです。</p>
+          </div>
+          <div class="quiz-opt" data-choice="b" onclick="quizPick(this)">
+            <div class="quiz-label">B</div>
+            <p>厚労省の統計を見ました。出生数68万6061人、合計特殊出生率1.15。どちらも過去最低。こういう数字が出るたびに考えるのは、本当に減っているのは「持ちたい」という気持ちなのか、ということです。</p>
+          </div>
+        </div>
+        <div class="quiz-fb"></div>
+      </div>
+      <div class="quiz-q active" data-answer="b">
+        <div class="quiz-num">Q6 / 6　—　整理されすぎ・感情がない</div>
+        <div class="quiz-pair">
+          <div class="quiz-opt" data-choice="a" onclick="quizPick(this)">
+            <div class="quiz-label">A</div>
+            <p>子育て支援を増やす、働き方を見直す、若い世代の負担を軽くする。方向としてはどれも間違っていないと思います。ただ、全部言って終わりでは意味がない。どこから先に手をつけるのか、生活に近い順番でやらないと届かない。</p>
+          </div>
+          <div class="quiz-opt" data-choice="b" onclick="quizPick(this)">
+            <div class="quiz-label">B</div>
+            <p>私の感覚で、優先度が高いものを挙げます。物価高と実質賃金の上昇。社会保障の持続性。子育て・教育費の構造問題。防災・インフラ老朽化。安全保障環境の変化。外国資本の不透明な流入。これらに総合的に取り組む必要があります。</p>
           </div>
         </div>
         <div class="quiz-fb"></div>
@@ -890,11 +932,14 @@ document.addEventListener('dblclick',e=>{const cmt=e.target.closest('.cmt');if(!
 
 // ===== AI Quiz =====
 let quizScore=0,quizCurrent=0;
-const quizTotal=3;
+const quizTotal=6;
 const quizExplain=[
-  'Aは「結論から言います」で始まり「！」を使う——AIがよくやるパターンです。Bは制度の論点から静かに入っている。noteでは「！」を使わないルールも効いています。',
-  'Bは7項目をただ並べただけ。どれが大事かの判断がない。Aは「公開の仕組み」という一点に絞り、なぜそれが問題かを語っている。本人の視点が見えます。',
-  'Aは「様々な課題」「確信しております」——具体的なことを何も言っていない典型的なAI文。Bは「港区」「条例」「相続」と具体的で、現場を知っている人の言葉になっています。'
+  '❶固有名詞をぼかす — Aは「議員」「報道では」と名前を出さない。Bは「カタログギフト配布」「寄附」「利益供与」と具体的。プロンプトで固有名詞のぼかしを禁止しています。',
+  '❷定番フレーズ — Bは「重視したいのは」「大切にしたいと思っています」「前進してまいりたい」が連続。Aは一点に絞って「なぜそれが問題か」を語っている。',
+  '❸論理の飛躍 — Aは「ここまで見てきて」→何を見てきたか不明。「憲法論ではありません」→突然の話題。Bは空き家→条例→所有者と、論理がつながっている。',
+  '❹ふんわり — Bは「共に助け合う力」「可能性を信じ」——具体的なことを何も言っていない。Aは「毎月の見通し」という一点に絞り、なぜそれが先かを説明している。',
+  '❺語尾の連続 — Aは「です」「です」「います」「です」「です」「です」。人間は無意識に語尾を変える。Bは「ました」「最低」「ということです」と自然に変化。',
+  '❻整理されすぎ — Bは6項目を羅列して「総合的に」で締める。どれが大事かの判断がない。Aは「全部言って終わりでは意味がない」と自分の考えが入っている。'
 ];
 function quizPick(el){
   const q=el.closest('.quiz-q');
@@ -922,9 +967,10 @@ function showQuizResult(){
   r.style.display='block';
   r.querySelector('.quiz-score').textContent=quizScore+' / '+quizTotal+' 正解';
   let msg='';
-  if(quizScore===quizTotal)msg='全問正解。でも、忙しい読者がここまで丁寧に読み比べることはありません。ぱっと見の違和感——それが信頼を削ります。';
-  else if(quizScore>=2)msg='ほぼ正解でしたが、1問は引っかかりました。この「微妙な違和感」が、記事を何本か並べたときに効いてきます。';
-  else msg='見抜くのは意外と難しかったのではないでしょうか。読者も同じです。だからこそ、AIっぽさを消す設計が必要になります。';
+  if(quizScore===quizTotal)msg='全問正解。ただ、ふつうの読者はここまで丁寧に読み比べません。ぱっと見の違和感が信頼を削ります。';
+  else if(quizScore>=4)msg='ほぼ見抜けていますが、数問は迷ったはずです。この「微妙な差」が、記事を何本か並べたときに効いてきます。';
+  else if(quizScore>=2)msg='半分ほど引っかかりました。どちらもAIですが、プロンプト設計の有無でここまで差が出ます。';
+  else msg='見分けるのは難しかったと思います。読者も同じです。だからこそ、AIっぽさを消す設計が必要になります。';
   r.querySelector('.quiz-msg').textContent=msg;
 }
 
