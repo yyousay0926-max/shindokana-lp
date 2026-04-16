@@ -160,7 +160,7 @@ p+p{margin-top:18px}
 
 /* Responsive */
 /* Quiz */
-.quiz-q{margin:32px 0;display:none}
+.quiz-q{margin:32px 0;display:block}
 .quiz-q.active{display:block}
 .quiz-num{font-size:14px;color:var(--acc);font-weight:700;margin-bottom:16px;letter-spacing:.05em}
 .quiz-pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
@@ -403,7 +403,7 @@ body.au{padding-top:50px}
         </div>
         <div class="quiz-fb"></div>
       </div>
-      <div class="quiz-q" data-answer="b">
+      <div class="quiz-q active" data-answer="b">
         <div class="quiz-num">Q2 / 3　—　政策の提案</div>
         <div class="quiz-pair">
           <div class="quiz-opt" data-choice="a" onclick="quizPick(this)">
@@ -417,7 +417,7 @@ body.au{padding-top:50px}
         </div>
         <div class="quiz-fb"></div>
       </div>
-      <div class="quiz-q" data-answer="a">
+      <div class="quiz-q active" data-answer="a">
         <div class="quiz-num">Q3 / 3　—　地域課題への所見</div>
         <div class="quiz-pair">
           <div class="quiz-opt" data-choice="a" onclick="quizPick(this)">
@@ -892,9 +892,9 @@ document.addEventListener('dblclick',e=>{const cmt=e.target.closest('.cmt');if(!
 let quizScore=0,quizCurrent=0;
 const quizTotal=3;
 const quizExplain=[
-  'Aは「結論から言います」というAI定番パターンで始まり、同じフレーズを繰り返しています。Bは個人の感覚から入り、「落ち着かない気持ち」「違和感」など本人にしか書けない表現があります。',
-  'Bは7項目を羅列しただけで、政策メニューのコピペ感があります。Aは3つに絞り、各項目に「なぜそう思うか」の理由がある。本人の判断が見えます。',
-  'Aは「様々な課題」「確信しております」「声に耳を傾けてまいります」と、何一つ具体的なことを言っていません。Bは実際に足を運んだ場所、聞いた声、動けない理由が書かれている。この空気感の違いが本人らしさです。'
+  'Aは「結論から言います」で始まり「！」を使う——AIがよくやるパターンです。Bは制度の論点から静かに入っている。noteでは「！」を使わないルールも効いています。',
+  'Bは7項目をただ並べただけ。どれが大事かの判断がない。Aは「公開の仕組み」という一点に絞り、なぜそれが問題かを語っている。本人の視点が見えます。',
+  'Aは「様々な課題」「確信しております」——具体的なことを何も言っていない典型的なAI文。Bは「港区」「条例」「相続」と具体的で、現場を知っている人の言葉になっています。'
 ];
 function quizPick(el){
   const q=el.closest('.quiz-q');
@@ -912,18 +912,9 @@ function quizPick(el){
   const fb=q.querySelector('.quiz-fb');
   const idx=[...document.querySelectorAll('.quiz-q')].indexOf(q);
   fb.classList.add('show',correct?'ok':'ng');
-  fb.innerHTML='<strong>'+(correct?'正解！':'不正解。')+'</strong>'+(correct?'':'正解は'+(answer==='a'?'A':'B')+'でした。')+'<br>'+quizExplain[idx];
-  const btn=document.createElement('button');
-  btn.className='quiz-next';
+  fb.innerHTML='<strong>'+(correct?'正解':'不正解')+'</strong> '+(correct?'':'— 正解は'+(answer==='a'?'A':'B')+'でした。')+'<br>'+quizExplain[idx];
   quizCurrent++;
-  if(quizCurrent<quizTotal){
-    btn.textContent='次の問題へ →';
-    btn.onclick=()=>{q.classList.remove('active');q.nextElementSibling.classList.add('active')};
-  }else{
-    btn.textContent='結果を見る';
-    btn.onclick=showQuizResult;
-  }
-  fb.appendChild(btn);
+  if(quizCurrent>=quizTotal)setTimeout(showQuizResult,600);
 }
 function showQuizResult(){
   document.querySelectorAll('.quiz-q').forEach(q=>q.classList.remove('active'));
@@ -931,9 +922,9 @@ function showQuizResult(){
   r.style.display='block';
   r.querySelector('.quiz-score').textContent=quizScore+' / '+quizTotal+' 正解';
   let msg='';
-  if(quizScore===quizTotal)msg='全問正解。あなたには見分けがつくかもしれません。しかし、忙しい読者はここまで丁寧に読み比べません。AIっぽさは、無意識のうちに信頼を削っていきます。';
-  else if(quizScore>=2)msg='ほぼ見分けがつきましたが、1問は引っかかりました。この「微妙な違和感」こそが、読者の信頼に直結します。数本並べたとき「なんか同じ人に見えない」——それが本当のリスクです。';
-  else msg='AIが書いた文章を見抜くのは、思った以上に難しかったのではないでしょうか。しかし本当のリスクは1本ずつの判定ではなく、何本か並べたときに「同じ人が書いたように見えない」こと。そこで読者の信頼が崩れます。';
+  if(quizScore===quizTotal)msg='全問正解。でも、忙しい読者がここまで丁寧に読み比べることはありません。ぱっと見の違和感——それが信頼を削ります。';
+  else if(quizScore>=2)msg='ほぼ正解でしたが、1問は引っかかりました。この「微妙な違和感」が、記事を何本か並べたときに効いてきます。';
+  else msg='見抜くのは意外と難しかったのではないでしょうか。読者も同じです。だからこそ、AIっぽさを消す設計が必要になります。';
   r.querySelector('.quiz-msg').textContent=msg;
 }
 
