@@ -488,34 +488,34 @@ body.au{padding-top:50px}
 
     <div class="ai-grid">
       <div class="ai-card">
-        <div class="ai-tag" contenteditable="true">パターン1: 固有名詞を出さない（10件）</div>
-        <blockquote contenteditable="true">〜比例単独での立候補を表明した<strong>議員</strong>の動きも注目されています。また、<strong>報道では</strong>現場の温度差が〜</blockquote>
-        <div class="ai-why" contenteditable="true">❌ 「その人の名前を出さないのはおかしい」「報道では、だと具体的な記事名がない」</div>
+        <div class="ai-tag" contenteditable="true">パターン1: 語尾の連続</div>
+        <blockquote contenteditable="true">少子化は深刻な問題です。早急な対策が必要です。子育て支援の充実が求められています。社会全体で取り組むことが重要です。</blockquote>
+        <div class="ai-why" contenteditable="true">❌ 「です」「です」「います」「です」— 人間は無意識に語尾を変える。AIは変えない</div>
       </div>
       <div class="ai-card">
-        <div class="ai-tag" contenteditable="true">パターン2: 定番フレーズの繰り返し（6件）</div>
-        <blockquote contenteditable="true">私が引き続き重視したいのは、<strong>次のような点です。</strong><br>私は、<strong>歴史の連続性を大切にしたいと思っています。</strong></blockquote>
-        <div class="ai-why" contenteditable="true">❌ 「AIくさい文章」と即座に判定。毎回同じ言い回しが繰り返される</div>
+        <div class="ai-tag" contenteditable="true">パターン2: 固有名詞をぼかす</div>
+        <blockquote contenteditable="true">ある調査によれば〜。専門家は「経済的な不安が大きい」と指摘しており、関係者からは制度の見直しを求める声も上がっています。</blockquote>
+        <div class="ai-why" contenteditable="true">❌ 「ある調査」「専門家」「関係者」— 全部ぼかし。どの調査の誰なのかが書けていない</div>
       </div>
       <div class="ai-card">
-        <div class="ai-tag" contenteditable="true">パターン3: 途中の論理を飛ばす（9件）</div>
-        <blockquote contenteditable="true">少子化の背景には様々な要因があります。<strong>だからこそ、私たちは未来に向けて行動しなければなりません。</strong></blockquote>
-        <div class="ai-why" contenteditable="true">❌ 「様々な要因って何？」「なぜそこから"行動"に飛ぶの？」— 原因の分析をすっ飛ばして、いきなり結論に着地する</div>
+        <div class="ai-tag" contenteditable="true">パターン3: 架空の声をつくる</div>
+        <blockquote contenteditable="true">先日、地元の集まりで30代の女性が「正直、2人目は諦めました」と話してくれました。その言葉がずっと頭に残っています。</blockquote>
+        <div class="ai-why" contenteditable="true">❌ リアルに見えるが、AIが作った架空の会話。実在しない体験を書いてはいけない</div>
       </div>
       <div class="ai-card">
-        <div class="ai-tag" contenteditable="true">パターン4: ふんわり・踏み込み不足（4件）</div>
-        <blockquote contenteditable="true">○○区は多様な世代・国籍・働き方を抱える街ですが、だからこそ<strong>「共に助け合う力」を育てる土壌があります。</strong></blockquote>
-        <div class="ai-why" contenteditable="true">❌ 「私なら言わないふんわり表現」— 具体性がなく、何も言っていない</div>
+        <div class="ai-tag" contenteditable="true">パターン4: 箇条書き羅列（判断なし）</div>
+        <blockquote contenteditable="true">・子育て支援の充実<br>・働き方改革の推進<br>・教育費の負担軽減<br>・若年層への住居支援<br>・地方自治体の独自施策<br>これらに総合的に取り組む必要があります。</blockquote>
+        <div class="ai-why" contenteditable="true">❌ 5項目並べて「総合的に」で終わり。どれが大事かの判断がない</div>
       </div>
       <div class="ai-card">
-        <div class="ai-tag" contenteditable="true">パターン5: 語尾の連続</div>
-        <blockquote contenteditable="true">少子化は深刻な問題<strong>です</strong>。早急な対策が必要<strong>です</strong>。子育て支援の充実が求められて<strong>います</strong>。社会全体で取り組むことが重要<strong>です</strong>。一人ひとりの意識改革が不可欠<strong>です</strong>。</blockquote>
-        <div class="ai-why" contenteditable="true">❌ 「語尾が連続。ですって」— 人間は自然に語尾を変えるが、AIは変えない</div>
+        <div class="ai-tag" contenteditable="true">パターン5: 抽象的な感情表現</div>
+        <blockquote contenteditable="true">この数字を目にしたとき、胸の奥が静かにざわつきました。言葉を失うような思いです。私たちが守るべき未来が、少しずつ揺らいでいる。</blockquote>
+        <div class="ai-why" contenteditable="true">❌ 「胸がざわつく」「言葉を失う」— 文学的だが何も言っていない。具体的な場面がない</div>
       </div>
       <div class="ai-card">
-        <div class="ai-tag" contenteditable="true">パターン6: 整理されすぎ・感情がない（4件）</div>
-        <blockquote contenteditable="true">私の感覚で、優先度が高いものを挙げます。<br>・物価高と実質賃金の上昇<br>・社会保障の持続性<br>・子育て・教育費の構造問題<br>・防災・インフラ老朽化<br>・安全保障環境の変化</blockquote>
-        <div class="ai-why" contenteditable="true">❌ 「前半はAI臭い。整理されてる感が」「感情。人の心の動きに寄り添ってない」</div>
+        <div class="ai-tag" contenteditable="true">パターン6: 定番フレーズで始まる</div>
+        <blockquote contenteditable="true">結論から申し上げますと、少子化は我が国が直面する喫緊の課題です。これは非常に深刻な状況であると言えるでしょう。</blockquote>
+        <div class="ai-why" contenteditable="true">❌ 「結論から申し上げますと」「喫緊の課題」「言えるでしょう」— AIの定番パターン</div>
       </div>
     </div>
 
