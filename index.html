@@ -252,6 +252,11 @@ body.au{padding-top:50px}
 
 /* Image caption */
 .img-cap{font-size:12px;color:var(--txt-l);text-align:center;margin-top:6px;font-style:italic}
+
+/* Pattern tabs */
+.ptab{background:transparent;border:2px solid rgba(255,255,255,.3);color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-size:14px;font-weight:600;font-family:inherit;transition:all .2s}
+.ptab:hover{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.5)}
+.ptab.active{background:#fff;color:var(--navy);border-color:#fff}
 </style>
 </head>
 <body>
@@ -300,19 +305,25 @@ body.au{padding-top:50px}
 
 <div id="lp">
 
-<section class="s hero" data-l="1. Hero">
+<div id="pattern-tabs" style="position:sticky;top:0;z-index:999;background:var(--navy);display:none;justify-content:center;gap:0;padding:8px 16px;box-shadow:0 2px 10px rgba(0,0,0,.3)">
+  <button class="ptab active" onclick="switchPattern('A')">A. 現行フル版</button>
+  <button class="ptab" onclick="switchPattern('B')">B. ChatGPT推奨版</button>
+  <button class="ptab" onclick="switchPattern('C')">C. コンパクト版</button>
+</div>
+
+<section class="s hero" data-l="1. Hero" id="sec-hero">
   <div class="in">
     <h1 contenteditable="true">あなたの言葉で書かれた記事を、<br>毎日届ける仕組みがあります。</h1>
     <p class="sub" contenteditable="true">考え方、語り口、価値観。あなたらしさを学習した専用AIが、本人が書いたとしか思えない記事を継続的に生成します。</p>
     <div class="hi">
       <div class="ei" onclick="ri(this)">
-        <img src="https://images.unsplash.com/photo-1762246433096-1814033d4679?w=560&h=320&fit=crop&crop=center" alt="Hero - 国会議事堂・政治空間" style="object-fit:cover;height:320px">
+        <img src="https://images.unsplash.com/photo-1513407030348-c983a97b98d8?w=560&h=320&fit=crop&crop=center" alt="東京の街並み・国会議事堂周辺" style="object-fit:cover;height:320px">
       </div>
     </div>
   </div>
 </section>
 
-<section class="s" data-l="2. Empathy">
+<section class="s" data-l="2. Empathy" id="sec-empathy">
   <div class="in">
     <h2 contenteditable="true">伝えたいことは、毎日ある。<br>でも、書く時間がない。</h2>
     <p contenteditable="true">動画やSNSでの発信は大事です。ただ、流れていきます。YouTubeは再生されても検索されにくく、SNSの投稿は翌日には埋もれる。有権者が「この人、どういう考えなんだろう」と思ったとき、すぐ手元で確認できる情報がないのは痛手です。</p>
@@ -325,7 +336,7 @@ body.au{padding-top:50px}
   </div>
 </section>
 
-<section class="s" data-l="3. Character Reproduction">
+<section class="s" data-l="3. Character Reproduction" id="sec-character">
   <div class="in">
     <h2 contenteditable="true">「この人の言葉だ」と<br>感じてもらえる文章を。</h2>
     <p contenteditable="true">一般的なAI文章サービスは、整った文を出してくれます。日本語としては正しいし、見た目もそれっぽい。でも読むと、どこか空気がない。誰が書いても同じ文章になってしまいます。</p>
@@ -334,7 +345,7 @@ body.au{padding-top:50px}
     <p contenteditable="true">同じテーマでも、書き方はお一人おひとり違います。制度から入る方もいれば、現場で出会った一人の話から入る方もいる。まっすぐ強く言い切る方もいれば、静かに事実を積み上げる方もいる。</p>
     <p contenteditable="true">私たちは、過去の発信や演説、SNS、動画などをもとに、あなたの言葉のクセや重心を丁寧に読み取ります。どこで熱が乗るのか、何を大事にしているのか、逆に何を言うと急に借り物っぽくなるのか。そこまで見たうえで、あなたの延長として機能するAIを設計します。</p>
     <p contenteditable="true">既製品のChatGPTに書かせるのとは根本的に違います。あなた一人のために仕立てるオーダーメイドです。だからこそ、最初に時間をかけます。そして、完成してからも手を入れ続けます。AIは放っておくとブレるので、植木屋が余計な枝を定期的に切るように、あなたの輪郭を保ち続けます。</p>
-    <div class="ia"><div class="ei" onclick="ri(this)"><img src="https://images.unsplash.com/photo-1758518730380-04c8e0d57b68?w=780&h=260&fit=crop&crop=center" alt="1対1の商談・ヒアリング" style="object-fit:cover;height:260px"></div><div class="img-cap">推奨: ヒアリング風景 / 2人の対話シーン</div></div>
+    <div class="ia"><div class="ei" onclick="ri(this)"><img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=780&h=260&fit=crop&crop=center" alt="打ち合わせ・ヒアリング風景" style="object-fit:cover;height:260px"></div><div class="img-cap">推奨: ヒアリング風景 / 2人の対話シーン</div></div>
     <h3 contenteditable="true">サービスの3つの柱</h3>
     <div class="sps">
       <div class="sp"><div contenteditable="true"><strong>打ち合わせ</strong><br>思想・方針を整理し、今押さえるべきテーマを提案します。過去の発信・演説・価値観を丁寧にお聞きし、どういう場面で感情が動くか、何に対して強く言い切るか。表記の癖まで把握します。</div></div>
@@ -346,7 +357,7 @@ body.au{padding-top:50px}
   </div>
 </section>
 
-<section class="s" data-l="4. AI Smell Elimination">
+<section class="s" data-l="4. AI Smell Elimination" id="sec-smell">
   <div class="in">
     <h2 contenteditable="true">なぜ「本人の文章」に見えるのか<br>— プロンプト設計の中身</h2>
     <p contenteditable="true">通常のAIには独特の癖があります。プロンプト設計の一端をお見せすると、以下のような対策を行っています。</p>
@@ -376,7 +387,7 @@ body.au{padding-top:50px}
   </div>
 </section>
 
-<section class="s" data-l="4.5 AI Quiz" style="background:var(--bg2)">
+<section class="s" data-l="4.5 AI Quiz" style="background:var(--bg2)" id="sec-quiz">
   <div class="in">
     <h2>どちらがAIの文章か、<br>見分けられますか？</h2>
     <p style="margin-bottom:8px;color:var(--txt-l)">実際の出力から抜粋した2つの文章を読み比べて、「AIが書いた方」を選んでください。</p>
@@ -431,7 +442,7 @@ body.au{padding-top:50px}
   </div>
 </section>
 
-<section class="s" data-l="5. Before / After">
+<section class="s" data-l="5. Before / After" id="sec-ba">
   <div class="in">
     <h2 contenteditable="true">実際のテスト運用で見つかった<br>AIの癖、6パターン。</h2>
     <p contenteditable="true">60件以上のフィードバック・修正コメントを分析した結果、AIが繰り返し指摘される癖は6つに集約されました。以下は、実際の運用テストで記録された修正事例です。</p>
@@ -475,23 +486,23 @@ body.au{padding-top:50px}
     <p contenteditable="true" style="font-size:13px;color:var(--txt-l);margin-bottom:12px">起点: 厚生労働省「令和6年 人口動態統計月報年計（概数）」（出生数68.6万人・合計特殊出生率1.15）</p>
     <div class="cg">
       <div class="cb bad">
-        <div class="tg2" contenteditable="true">BEFORE — 6つの癖がすべて入った文章</div>
-        <blockquote contenteditable="true"><strong>結論から申し上げますと</strong>、少子化は我が国が直面する<strong>喫緊の課題</strong>です。厚生労働省の発表によると、出生数は約68.6万人で、合計特殊出生率は1.15と過去最低を記録しました。これは<strong>非常に深刻な状況であると言えるでしょう</strong>。<br><br>この問題に対しては、以下のような多角的なアプローチが求められています。<br>・子育て支援の充実と経済的負担の軽減<br>・働き方改革の推進とワークライフバランスの実現<br>・教育費の負担軽減に向けた制度設計<br>・若年層への住居支援の拡充<br>・地方自治体における独自施策の展開<br><br><strong>ある専門家は</strong>「このままでは社会保障制度の持続が困難になる」と<strong>指摘しています</strong>。国と自治体、企業が<strong>三位一体となって</strong>取り組み、安心して子どもを産み育てられる社会の実現に向けて<strong>着実に前進していくことが重要です</strong>。</blockquote>
-        <div class="nt" contenteditable="true"><strong>テスト運用で繰り返し指摘された癖が入っています:</strong><br>❶定番導入「結論から申し上げますと」 / ❷堅い定型表現の多用 / ❸5項目の箇条書き（どれが大事かの判断がない） / ❹語尾の連続 / ❺ぼかし「ある専門家は」</div>
+        <div class="tg2" contenteditable="true">BEFORE — 素のChatGPTが書く政治家ブログ</div>
+        <blockquote contenteditable="true">少子化は、わが国が直面している極めて重要な課題の一つ<strong>です</strong>。将来にわたって社会保障制度や地域社会を維持していくためにも、早急な対応が求められて<strong>います</strong>。<br><br>少子化の背景には、経済的不安、仕事と子育ての両立の難しさ、晩婚化・未婚化など、さまざまな要因が<strong>あります</strong>。そのため、対策についても多角的な視点が必要<strong>です</strong>。<br><br>具体的には、第一に子育て支援の充実、第二に若い世代の所得向上、第三に働き方改革、第四に地域で子育てを支える環境整備などが挙げられ<strong>ます</strong>。<br><br>少子化対策は一朝一夕で結果が出るものではありませんが、国・自治体・企業・地域が連携し、安心して子どもを産み育てられる社会を実現していくことが重要<strong>です</strong>。私自身も、今後しっかりと取り組んでまいり<strong>ます</strong>。</blockquote>
+        <div class="nt" contenteditable="true"><strong>整っている。無難。破綻がない。でも——</strong><br>❶ 誰が書いても同じ文章になっている / ❷ 現場も体温もない / ❸ 語尾「です・ます」が連続 / ❹ 4項目の羅列（どれが大事かの判断がない） / ❺ 最後の「取り組んでまいります」だけで政治家らしさを出そうとしている</div>
       </div>
       <div class="cb good">
-        <div class="tg2" contenteditable="true">AFTER — 本サービスのプロンプトを適用</div>
-        <blockquote contenteditable="true">厚労省が出した令和6年の人口動態統計を見<strong>ました</strong>。出生数68万6千人、合計特殊出生率は1.15。どちらも過去最低<strong>です</strong>。<br><br>正直、またかという気持ちは<strong>あります</strong>。<br><br>「2人目は気持ちじゃなくて、お金の問題なんです」——地元の会合で何度か聞いてきた言葉<strong>です</strong>。政策の議論はどうしても制度設計から入りがちに<strong>なります</strong>。けれど、あの一言にまず答えるところから始めないと、届くものも届かないんじゃ<strong>ないか</strong>。そう考えて<strong>います</strong>。</blockquote>
-        <div class="nt" contenteditable="true"><strong>指摘された癖がすべて消えています:</strong><br>❶ 定番フレーズなし。「統計を見ました」—— 行動から入る<br>❷ 問いかけで閉じる。結論の押しつけがない<br>❸ 5項目の羅列ではなく、一つの声から掘り下げる<br>❹ 語尾に変化がある。です/ます基調だが「ないか」「います」が自然に混じる<br>❺ 「ある専門家」ではなく「地元の会合で聞いてきた言葉」—— 出典が具体的</div>
+        <div class="tg2" contenteditable="true">AFTER — 本サービスのプロンプトを適用（実際の出力）</div>
+        <blockquote contenteditable="true">厚生労働省の「令和6年 人口動態統計月報年計（概数）」で、出生数は68万6061人、合計特殊出生率は1.15と公表されました。いずれも過去最低水準<strong>です</strong>。しかも、母の年齢別に見ても出生数はすべての階級で減っている。数字の落ち込みとして、かなり重い結果だと思い<strong>ます</strong>。<br><br>ただ、こういう数字が出るたびに、私はいつも同じことを考え<strong>ます</strong>。<br>本当に減っているのは、子どもを持ちたいという気持ちそのもの<strong>なのか</strong>。そこは、かなり慎重に見ないといけない論点<strong>です</strong>。<br><br>こども家庭庁の資料でも、若い未婚男女の多くは結婚を希望しており、夫婦も2人以上の子どもを理想とする傾向が示されて<strong>います</strong>。希望が消えたというより、希望を現実に変える条件が弱い。私はまずそこを見るべきだと考えて<strong>います</strong>。<br><br>少子化は、スローガンでは止まり<strong>ません</strong>。<br>生活に即した制度へ。現実に耐える設計へ。私はそこを、感情ではなく制度の言葉で詰めていきたいと思い<strong>ます</strong>。</blockquote>
+        <div class="nt" contenteditable="true"><strong>プロンプトのルールが効いています:</strong><br>❶ 定番フレーズなし。公的統計の正確な数字から入る<br>❷ 語尾に変化がある。「です／ます／なのか／ません」が自然に混じる<br>❸ 実在しない会話を捏造せず、公的調査データで根拠を示す<br>❹ 「ある専門家」ではなく「こども家庭庁の資料」—— 出典が具体的<br>❺ 断定と揺れが共存。「私はいつも同じことを考えます」という思考の間がある<br>❻ 12項目QCチェック全項目OKで出力</div>
       </div>
     </div>
     <div class="rf" contenteditable="true"><strong>これはプロンプト設計のごく一部です。</strong> 実際のプロンプトには、文体制御・禁止表現リスト・12項目QCチェック・モデル別調整・フィードバック学習ループなど、多層的なルールが組み込まれています。ここでお見せしているのは、その一端にすぎません。</div>
 
-    <div class="ia" style="margin-top:36px"><div class="ei" onclick="ri(this)"><img src="https://images.unsplash.com/photo-1550592704-6c76defa9985?w=780&h=220&fit=crop&crop=center" alt="赤ペン校閲・原稿チェック" style="object-fit:cover;height:220px"></div><div class="img-cap">推奨: 文章編集 / 校正作業のイメージ</div></div>
+    <div class="ia" style="margin-top:36px"><div class="ei" onclick="ri(this)"><img src="https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=780&h=220&fit=crop&crop=center" alt="文章編集・校正作業" style="object-fit:cover;height:220px"></div><div class="img-cap">推奨: 文章編集 / 校正作業のイメージ</div></div>
   </div>
 </section>
 
-<section class="s" data-l="6. Fact-Check Design">
+<section class="s" data-l="6. Fact-Check Design" id="sec-factcheck">
   <div class="in">
     <h2 contenteditable="true">ファクトミスを防ぐ仕組み</h2>
     <p contenteditable="true">発信で一番怖いのは、事実の間違いです。AIは平然と嘘をつくことがあります。そのまま出してしまえば、積み上げてきた信頼を一瞬で失います。だから私たちは、ここに一番力を入れています。</p>
@@ -502,22 +513,22 @@ body.au{padding-top:50px}
       <li>数字・日付・固有名詞・法律名は裏取り</li>
       <li>思想部分は引用せず、ご本人の価値観で再構成</li>
     </ul>
-    <div class="ia"><div class="ei" onclick="ri(this)"><img src="https://images.unsplash.com/photo-1767102060241-130cb9260718?w=780&h=240&fit=crop&crop=center" alt="図書館リサーチ・ファクトチェック" style="object-fit:cover;height:240px"></div><div class="img-cap">推奨: チェックリスト / 品質確認のイメージ</div></div>
+    <div class="ia"><div class="ei" onclick="ri(this)"><img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=780&h=240&fit=crop&crop=center" alt="リサーチ・ファクトチェック" style="object-fit:cover;height:240px"></div><div class="img-cap">推奨: チェックリスト / 品質確認のイメージ</div></div>
   </div>
 </section>
 
-<section class="s" data-l="7. 80-Point Philosophy">
+<section class="s" data-l="7. 80-Point Philosophy" id="sec-80pt">
   <div class="in">
     <h2 contenteditable="true">あえて100点ではなく、<br>80点を目指す理由</h2>
     <p contenteditable="true">AIで100点を目指すとどうなるか。毎回、同じような文章しか出なくなります。構文が揃い、語尾が揃い、締め方が揃う。完璧に見えるほど「AIだな」と感じさせてしまう。これはAIの構造的な特性です。</p>
     <p contenteditable="true">だから私たちは、あえて80点の下書きをお届けします。</p>
     <p contenteditable="true">80点で届くから、一言添えるだけで90点になる。「ここを直して」と指示すれば95点にもなる。この余白に意味があります。完璧すぎない下書きだからこそ、最後にあなたの手が入る余地がある。それが「この人は自分で考えて書いている」という印象につながっていきます。</p>
     <p contenteditable="true">もう一つ、現実的な理由もあります。100点を目指せば1本あたりの手間とコストが跳ね上がり、毎日投稿のペースを維持できなくなります。80点を安定して出せる仕組みの方が実用的です。完璧な1本より、あなたらしい30本。信頼の蓄積は、量が生みます。</p>
-    <div class="ia"><div class="ei" onclick="ri(this)"><img src="https://images.unsplash.com/photo-1621865611849-92e27cde1577?w=780&h=220&fit=crop&crop=center" alt="赤ペン推敲・草稿修正" style="object-fit:cover;height:220px"></div><div class="img-cap">推奨: 手書きメモ / 赤ペン添削のイメージ</div></div>
+    <div class="ia"><div class="ei" onclick="ri(this)"><img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=780&h=220&fit=crop&crop=center" alt="ノートとペン・推敲作業" style="object-fit:cover;height:220px"></div><div class="img-cap">推奨: 手書きメモ / 赤ペン添削のイメージ</div></div>
   </div>
 </section>
 
-<section class="s" data-l="8. AIO & Accumulation">
+<section class="s" data-l="8. AIO & Accumulation" id="sec-aio">
   <div class="in">
     <h2 contenteditable="true">AIO — 「AIに自分をどう語らせるか」<br>という新しい課題</h2>
     <p contenteditable="true">SEOという言葉はご存じだと思います。Googleで検索されたとき、自分のページが上に出るようにする対策です。AIOはその「AI版」です。</p>
@@ -559,7 +570,7 @@ body.au{padding-top:50px}
   </div>
 </section>
 
-<section class="s" data-l="9. Pricing">
+<section class="s" data-l="9. Pricing" id="sec-pricing">
   <div class="in">
     <h2 contenteditable="true">費用</h2>
     <div class="pc">
@@ -589,7 +600,7 @@ body.au{padding-top:50px}
   </div>
 </section>
 
-<section class="s" data-l="10. FAQ">
+<section class="s" data-l="10. FAQ" id="sec-faq">
   <div class="in">
     <h2 contenteditable="true">よくあるご質問</h2>
     <div class="fi op"><div class="fq" onclick="tf(this)"><span contenteditable="true">テーマはどうやって決めますか？</span></div><div class="fa"><p contenteditable="true">ご自身で送っていただいても、こちらからAIOの観点でご提案することもできます。「今このテーマを出すべき」というタイミングの判断も含めて、テーマ提案はこのサービスの価値の一つです。</p></div></div>
@@ -600,7 +611,7 @@ body.au{padding-top:50px}
   </div>
 </section>
 
-<section class="s" data-l="11. Summary">
+<section class="s" data-l="11. Summary" id="sec-summary">
   <div class="in">
     <h2 contenteditable="true">文章でしか届かない人に、<br>あなたの考えを届けるために。</h2>
     <p contenteditable="true">演説や対面で会える人には限りがあります。あなたのことを知りたいと思ったとき、多くの人はまず検索します。そしてこれからは、AIに聞くようになります。</p>
@@ -610,7 +621,7 @@ body.au{padding-top:50px}
   </div>
 </section>
 
-<section class="s cta" data-l="12. CTA">
+<section class="s cta" data-l="12. CTA" id="sec-cta">
   <div class="in">
     <h2 contenteditable="true">まずは一度、お話しさせてください。</h2>
     <p contenteditable="true">動画、SNS、ブログ、演説原稿、活動報告。<br>今の発信状況を見せていただければ、どこまで本人らしさを残したまま発信を強くできるか、具体的にご提案します。</p>
@@ -662,9 +673,9 @@ function resetSaved(){
 
 const H='7fde4dad022931c85b39ba07f0837fd76f3434f57432b03db026e445ae6e5f6e';
 async function s256(s){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(b=>b.toString(16).padStart(2,'0')).join('')}
-async function auth(){const h=await s256(document.getElementById('pw').value);if(h===H){document.getElementById('lock').classList.add('off');document.getElementById('lp').classList.add('on');document.getElementById('tb').style.display='flex';document.body.classList.add('au');sessionStorage.setItem('a','1');restoreSaved()}else{document.getElementById('err').textContent='Incorrect passcode';document.getElementById('pw').value='';document.getElementById('pw').focus()}}
+async function auth(){const h=await s256(document.getElementById('pw').value);if(h===H){document.getElementById('lock').classList.add('off');document.getElementById('lp').classList.add('on');document.getElementById('tb').style.display='flex';document.getElementById('pattern-tabs').style.display='flex';document.body.classList.add('au');sessionStorage.setItem('a','1');restoreSaved()}else{document.getElementById('err').textContent='Incorrect passcode';document.getElementById('pw').value='';document.getElementById('pw').focus()}}
 document.getElementById('pw').addEventListener('keydown',e=>{if(e.key==='Enter')auth()});
-if(sessionStorage.getItem('a')==='1'){document.getElementById('lock').classList.add('off');document.getElementById('lp').classList.add('on');document.getElementById('tb').style.display='flex';document.body.classList.add('au');restoreSaved()}
+if(sessionStorage.getItem('a')==='1'){document.getElementById('lock').classList.add('off');document.getElementById('lp').classList.add('on');document.getElementById('tb').style.display='flex';document.getElementById('pattern-tabs').style.display='flex';document.body.classList.add('au');restoreSaved()}
 
 function X(c,v){c==='formatBlock'?document.execCommand('formatBlock',false,'<'+v+'>'):document.execCommand(c,false,v||null)}
 let ci=null;const ii=document.getElementById('ii');
@@ -928,6 +939,31 @@ function showQuizResult(){
   else if(quizScore>=2)msg='ほぼ見分けがつきましたが、1問は引っかかりました。この「微妙な違和感」こそが、読者の信頼に直結します。数本並べたとき「なんか同じ人に見えない」——それが本当のリスクです。';
   else msg='AIが書いた文章を見抜くのは、思った以上に難しかったのではないでしょうか。しかし本当のリスクは1本ずつの判定ではなく、何本か並べたときに「同じ人が書いたように見えない」こと。そこで読者の信頼が崩れます。';
   r.querySelector('.quiz-msg').textContent=msg;
+}
+
+// ===== Pattern Tab Switcher =====
+const PATTERNS={
+  A:['sec-hero','sec-empathy','sec-character','sec-smell','sec-quiz','sec-ba','sec-factcheck','sec-80pt','sec-aio','sec-pricing','sec-faq','sec-summary','sec-cta'],
+  B:['sec-hero','sec-empathy','sec-character','sec-ba','sec-smell','sec-factcheck','sec-80pt','sec-aio','sec-pricing','sec-faq','sec-cta'],
+  C:['sec-hero','sec-ba','sec-aio','sec-pricing','sec-cta']
+};
+const PATTERN_NAMES={A:'現行フル版（12セクション）',B:'ChatGPT推奨版（11セクション・Quiz削除・統合）',C:'コンパクト版（5セクション・商談後最短）'};
+function switchPattern(p){
+  const ids=PATTERNS[p];
+  const allSecs=document.querySelectorAll('#lp > section');
+  const lp=document.getElementById('lp');
+  // Hide all
+  allSecs.forEach(s=>s.style.display='none');
+  // Show & reorder
+  ids.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el){el.style.display='';lp.appendChild(el)}
+  });
+  // Update tab buttons
+  document.querySelectorAll('.ptab').forEach(b=>b.classList.remove('active'));
+  document.querySelector('.ptab[onclick*="\''+p+'\'"]').classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  toast('パターン '+p+': '+PATTERN_NAMES[p]);
 }
 </script>
 </body>
