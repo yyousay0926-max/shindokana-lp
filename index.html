@@ -306,9 +306,9 @@ body.au{padding-top:50px}
 <div id="lp">
 
 <div id="pattern-tabs" style="position:sticky;top:0;z-index:999;background:var(--navy);display:flex;justify-content:center;gap:0;padding:8px 16px;box-shadow:0 2px 10px rgba(0,0,0,.3)">
-  <button class="ptab active" onclick="switchPattern('A')">A. 現行フル版</button>
-  <button class="ptab" onclick="switchPattern('B')">B. ChatGPT推奨版</button>
-  <button class="ptab" onclick="switchPattern('C')">C. コンパクト版</button>
+  <button class="ptab active" onclick="switchPattern('A')">A. じっくり説得型</button>
+  <button class="ptab" onclick="switchPattern('B')">B. 判断材料型</button>
+  <button class="ptab" onclick="switchPattern('C')">C. 要点だけ型</button>
 </div>
 
 <section class="s hero" data-l="1. Hero" id="sec-hero">
@@ -345,7 +345,7 @@ body.au{padding-top:50px}
     <p contenteditable="true">同じテーマでも、書き方はお一人おひとり違います。制度から入る方もいれば、現場で出会った一人の話から入る方もいる。まっすぐ強く言い切る方もいれば、静かに事実を積み上げる方もいる。</p>
     <p contenteditable="true">私たちは、過去の発信や演説、SNS、動画などをもとに、あなたの言葉のクセや重心を丁寧に読み取ります。どこで熱が乗るのか、何を大事にしているのか、逆に何を言うと急に借り物っぽくなるのか。そこまで見たうえで、あなたの延長として機能するAIを設計します。</p>
     <p contenteditable="true">既製品のChatGPTに書かせるのとは根本的に違います。あなた一人のために仕立てるオーダーメイドです。だからこそ、最初に時間をかけます。そして、完成してからも手を入れ続けます。AIは放っておくとブレるので、植木屋が余計な枝を定期的に切るように、あなたの輪郭を保ち続けます。</p>
-    <div class="ia"><div class="ei" onclick="ri(this)"><img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=780&h=260&fit=crop&crop=center" alt="打ち合わせ・ヒアリング風景" style="object-fit:cover;height:260px"></div><div class="img-cap">推奨: ヒアリング風景 / 2人の対話シーン</div></div>
+    <div class="ia"><div class="ei" onclick="ri(this)"><img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=780&h=260&fit=crop&crop=center" alt="ノートとキーボード・打ち合わせ準備" style="object-fit:cover;height:260px"></div><div class="img-cap">推奨: ヒアリング風景 / 2人の対話シーン</div></div>
     <h3 contenteditable="true">サービスの3つの柱</h3>
     <div class="sps">
       <div class="sp"><div contenteditable="true"><strong>打ち合わせ</strong><br>思想・方針を整理し、今押さえるべきテーマを提案します。過去の発信・演説・価値観を丁寧にお聞きし、どういう場面で感情が動くか、何に対して強く言い切るか。表記の癖まで把握します。</div></div>
@@ -498,7 +498,7 @@ body.au{padding-top:50px}
     </div>
     <div class="rf" contenteditable="true"><strong>これはプロンプト設計のごく一部です。</strong> 実際のプロンプトには、文体制御・禁止表現リスト・12項目QCチェック・モデル別調整・フィードバック学習ループなど、多層的なルールが組み込まれています。ここでお見せしているのは、その一端にすぎません。</div>
 
-    <div class="ia" style="margin-top:36px"><div class="ei" onclick="ri(this)"><img src="https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=780&h=220&fit=crop&crop=center" alt="文章編集・校正作業" style="object-fit:cover;height:220px"></div><div class="img-cap">推奨: 文章編集 / 校正作業のイメージ</div></div>
+    <div class="ia" style="margin-top:36px"><div class="ei" onclick="ri(this)"><img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=780&h=220&fit=crop&crop=center" alt="原稿用紙とペン・執筆作業" style="object-fit:cover;height:220px"></div><div class="img-cap">推奨: 文章編集 / 校正作業のイメージ</div></div>
   </div>
 </section>
 
@@ -947,7 +947,7 @@ const PATTERNS={
   B:['sec-hero','sec-empathy','sec-character','sec-ba','sec-smell','sec-factcheck','sec-80pt','sec-aio','sec-pricing','sec-faq','sec-cta'],
   C:['sec-hero','sec-ba','sec-aio','sec-pricing','sec-cta']
 };
-const PATTERN_NAMES={A:'現行フル版（12セクション）',B:'ChatGPT推奨版（11セクション・Quiz削除・統合）',C:'コンパクト版（5セクション・商談後最短）'};
+const PATTERN_NAMES={A:'じっくり説得型（12セクション・全情報掲載）',B:'判断材料型（11セクション・要点と根拠）',C:'要点だけ型（5セクション・商談後最短）'};
 function switchPattern(p){
   const ids=PATTERNS[p];
   const allSecs=document.querySelectorAll('#lp > section');
